@@ -6,8 +6,8 @@ public class UserRepository : IUserRepository
 {
 
  private Dictionary<string, User> _users = new Dictionary<string, User>();
-    private readonly string _filePath =  "users.json";
-    private readonly string _logsFilePath = "logs.json";
+    private readonly string _filePath =  "../Presentation/users.json";
+    private readonly string _logsFilePath = "../Presentation/logs.json";
     public UserRepository()
     {
         LoadUsers();

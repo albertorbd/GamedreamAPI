@@ -5,8 +5,8 @@ namespace GamedreamAPI.Data;
 public class VideogameRepository : IVideogameRepository
 {
 private Dictionary<string, Videogame> _videogame = new Dictionary<string, Videogame>();
-   private readonly string _filePath =  "videogames.json";
-    private readonly string _logsfilePath = "logs.json";
+   private readonly string _filePath =  "../Presentation/videogames.json";
+    private readonly string _logsfilePath = "../Presentation/logs.json";
          
     public VideogameRepository()
     {
