@@ -1,0 +1,68 @@
+[
+  {
+    "Id": 0,
+    "Name": "Dragons dogma 2",
+    "Genre": "Aventura y Rol",
+    "Description": "Eres un Arisen que tiene que recuperar su coraz\u251C\u2502n",
+    "RegisterDate": "2024-05-03T13:18:45.2093585+02:00",
+    "Price": 70,
+    "Developer": "Capcom",
+    "Platform": "PC PS5 Y XBOX",
+    "Valoration": 10
+  },
+  {
+    "Id": 1,
+    "Name": "Persona 5",
+    "Genre": "Persona 4",
+    "Description": "Juego de Rol estilo anime",
+    "RegisterDate": "2024-05-03T13:28:28.6724282+02:00",
+    "Price": 50,
+    "Developer": "Balve",
+    "Platform": "PS5",
+    "Valoration": 19
+  },
+  {
+    "Id": 2,
+    "Name": "Final Fantasy XV",
+    "Genre": "Aventuras y Rol",
+    "Description": "Subir niveles y matar monstruos",
+    "RegisterDate": "2024-05-05T23:54:31.3882992+02:00",
+    "Price": 50,
+    "Developer": "Square Enix",
+    "Platform": "PS5 ",
+    "Valoration": 9
+  },
+  {
+    "Id": 3,
+    "Name": "Manor lords",
+    "Genre": "Estrategia",
+    "Description": "Construye tu imperio",
+    "RegisterDate": "2024-05-06T00:08:02.8823618+02:00",
+    "Price": 40,
+    "Developer": "Three Kingdom",
+    "Platform": "PC",
+    "Valoration": 9
+  },
+  {
+    "Id": 4,
+    "Name": "The witcher 3",
+    "Genre": "Acci\u251C\u2502n",
+    "Description": "Eres geralt de rivia, un brujo que acepta contratos de matar monstruos a cambio de dinero",
+    "RegisterDate": "2024-05-07T15:45:00.8691508+02:00",
+    "Price": 20,
+    "Developer": "Project Red",
+    "Platform": "ps5",
+    "Valoration": 10
+  },
+  {
+    "Id": 5,
+    "Name": "Max Payne 3",
+    "Genre": "Acci\u251C\u2502n",
+    "Description": "Historia de redenci\u251C\u2502n donde eres un expolic\u251C\u00A1a que tienes que recuperar tu vida",
+    "RegisterDate": "2024-05-12T01:20:22.0571076+02:00",
+    "Price": 40,
+    "Developer": "Balve",
+    "Platform": "PS4, PC",
+    "Valoration": 9
+  }
+]

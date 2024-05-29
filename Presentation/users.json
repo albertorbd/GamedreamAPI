@@ -1,0 +1,183 @@
+[
+  {
+    "Id": 1,
+    "Name": "Carmen",
+    "Lastname": "Del Bano",
+    "Email": "carmendbd@hotmail.es",
+    "Password": "4321",
+    "DNI": "2545432",
+    "BirthDate": "1970-08-03T00:00:00",
+    "Money": 0,
+    "Operations": [],
+    "Videogames": {}
+  },
+  {
+    "Id": 2,
+    "Name": "Jesus ",
+    "Lastname": "Lopez",
+    "Email": "jesusito@hotmail.es",
+    "Password": "12345",
+    "DNI": "345678",
+    "BirthDate": "1990-12-20T00:00:00",
+    "Money": 60,
+    "Operations": [
+      {
+        "Id": 1,
+        "Videogame": null,
+        "Concept": "Ingreso",
+        "Date": "2024-05-06T00:09:02.5714295+02:00",
+        "Quantity": 1,
+        "Amount": 100,
+        "Method": "PayPal"
+      },
+      {
+        "Id": 2,
+        "Videogame": {
+          "Id": 3,
+          "Name": "Manor lords",
+          "Genre": "Estrategia",
+          "Description": "Construye tu imperio",
+          "RegisterDate": "2024-05-06T00:08:02.8823618+02:00",
+          "Price": 40,
+          "Developer": "Three Kingdom",
+          "Platform": "PC",
+          "Valoration": 9
+        },
+        "Concept": "Comprar Manor lords",
+        "Date": "2024-05-06T00:09:12.5022707+02:00",
+        "Quantity": 1,
+        "Amount": 0,
+        "Method": null
+      }
+    ],
+    "Videogames": {
+      "Manor lords": 40
+    }
+  },
+  {
+    "Id": 3,
+    "Name": "Alberto",
+    "Lastname": "Riveiro del Bano",
+    "Email": "albertoriveiro@hotmail.es",
+    "Password": "12345",
+    "DNI": "2532135",
+    "BirthDate": "1996-10-02T00:00:00",
+    "Money": 50,
+    "Operations": [
+      {
+        "Id": 1,
+        "Videogame": null,
+        "Concept": "Ingreso",
+        "Date": "2024-05-03T20:44:36.6097804+02:00",
+        "Quantity": 1,
+        "Amount": 100,
+        "Method": "Tarjeta de cr\u00E9dito"
+      },
+      {
+        "Id": 2,
+        "Videogame": null,
+        "Concept": "Retirada",
+        "Date": "2024-05-03T20:44:52.5326739+02:00",
+        "Quantity": 1,
+        "Amount": 30,
+        "Method": "PayPal"
+      },
+      {
+        "Id": 3,
+        "Videogame": null,
+        "Concept": "Comprar Persona 5",
+        "Date": "2024-05-05T23:33:06.4538858+02:00",
+        "Quantity": 1,
+        "Amount": 50,
+        "Method": "Tarjeta de cr\u00E9dito"
+      },
+      {
+        "Id": 4,
+        "Videogame": null,
+        "Concept": "Ingreso",
+        "Date": "2024-05-05T23:39:18.3899387+02:00",
+        "Quantity": 1,
+        "Amount": 50,
+        "Method": "Tarjeta de cr\u00E9dito"
+      },
+      {
+        "Id": 5,
+        "Videogame": null,
+        "Concept": "Dragons dogma 2",
+        "Date": "2024-05-05T23:39:36.9844002+02:00",
+        "Quantity": 1,
+        "Amount": 70,
+        "Method": "Comprar Dragons dogma 2"
+      },
+      {
+        "Id": 6,
+        "Videogame": null,
+        "Concept": "Ingreso",
+        "Date": "2024-05-05T23:52:22.0201157+02:00",
+        "Quantity": 1,
+        "Amount": 100,
+        "Method": "PayPal"
+      },
+      {
+        "Id": 7,
+        "Videogame": {
+          "Id": 2,
+          "Name": "Final Fantasy XV",
+          "Genre": "Aventuras y Rol",
+          "Description": "Subir niveles y matar monstruos",
+          "RegisterDate": "2024-05-05T23:54:31.3882992+02:00",
+          "Price": 50,
+          "Developer": "Square Enix",
+          "Platform": "PS5 ",
+          "Valoration": 9
+        },
+        "Concept": "Comprar Final Fantasy XV",
+        "Date": "2024-05-05T23:55:20.3569358+02:00",
+        "Quantity": 0,
+        "Amount": 0,
+        "Method": null
+      }
+    ],
+    "Videogames": {
+      "Persona 5": 50,
+      "Dragons dogma 2": 70,
+      "Final Fantasy XV": 50
+    }
+  },
+  {
+    "Id": 4,
+    "Name": "carlos",
+    "Lastname": "diaz",
+    "Email": "carlosd@hotmail.es",
+    "Password": "123455",
+    "DNI": "234567",
+    "BirthDate": "1980-02-10T00:00:00",
+    "Money": 0,
+    "Operations": [],
+    "Videogames": {}
+  },
+  {
+    "Id": 5,
+    "Name": "ramon",
+    "Lastname": "riveiro",
+    "Email": "ramon@hotmail.es",
+    "Password": "12345",
+    "DNI": "23456789",
+    "BirthDate": "1960-10-06T00:00:00",
+    "Money": 0,
+    "Operations": [],
+    "Videogames": {}
+  },
+  {
+    "Id": 6,
+    "Name": "mario ",
+    "Lastname": "bes",
+    "Email": "mariobes@hotmail.es",
+    "Password": "12345",
+    "DNI": "21312312123",
+    "BirthDate": "1997-02-10T00:00:00",
+    "Money": 0,
+    "Operations": [],
+    "Videogames": {}
+  }
+]

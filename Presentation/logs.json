@@ -1,0 +1,60 @@
+05/05/2024 23:52:38 ERROR Error buying the videogame
+System.InvalidOperationException: Ya posees este videojuego.
+   at Gamedream.Business.UserService.BuyVideogame(User user, Videogame videogame, String concept) in C:\Users\carme\DOTNET\Gamedream\Business\UserService.cs:line 182
+
+06/05/2024 18:22:56 ERROR Error updating user
+System.InvalidOperationException: El nuevo correo está siendo usado
+   at Gamedream.Business.UserService.UpdateUser(String userEmail, String newEmail, String newPassword) in C:\Users\carme\DOTNET\Gamedream\Business\UserService.cs:line 102
+
+07/05/2024 15:30:36 ERROR Error saving changes
+System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\carme\DOTNET\Gamedream\Presentation\bin\Debug\net6.0\Data\users.json'.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategy(FileStream fileStream, String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, Int64 preallocationSize)
+   at System.IO.StreamWriter.ValidateArgsAndOpenPath(String path, Boolean append, Encoding encoding, Int32 bufferSize)
+   at System.IO.File.WriteAllText(String path, String contents)
+   at Gamedream.Data.UserRepository.SaveChanges() in C:\Users\carme\DOTNET\Gamedream\Data\UserRepository.cs:line 54
+
+07/05/2024 15:30:37 ERROR Error registering the user
+System.Exception: Error saving changes in users archive
+ ---> System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\carme\DOTNET\Gamedream\Presentation\bin\Debug\net6.0\Data\users.json'.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategy(FileStream fileStream, String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, Int64 preallocationSize)
+   at System.IO.StreamWriter.ValidateArgsAndOpenPath(String path, Boolean append, Encoding encoding, Int32 bufferSize)
+   at System.IO.File.WriteAllText(String path, String contents)
+   at Gamedream.Data.UserRepository.SaveChanges() in C:\Users\carme\DOTNET\Gamedream\Data\UserRepository.cs:line 54
+   --- End of inner exception stack trace ---
+   at Gamedream.Data.UserRepository.SaveChanges() in C:\Users\carme\DOTNET\Gamedream\Data\UserRepository.cs:line 59
+   at Gamedream.Business.UserService.RegisterUser(String name, String lastname, String email, String password, String dni, DateTime birthdate) in C:\Users\carme\DOTNET\Gamedream\Business\UserService.cs:line 24
+
+07/05/2024 15:34:14 ERROR Error saving changes
+System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\carme\DOTNET\Gamedream\Presentation\bin\Debug\net6.0\Data\users.json'.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategy(FileStream fileStream, String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, Int64 preallocationSize)
+   at System.IO.StreamWriter.ValidateArgsAndOpenPath(String path, Boolean append, Encoding encoding, Int32 bufferSize)
+   at System.IO.File.WriteAllText(String path, String contents)
+   at Gamedream.Data.UserRepository.SaveChanges() in C:\Users\carme\DOTNET\Gamedream\Data\UserRepository.cs:line 54
+
+07/05/2024 15:34:14 ERROR Error registering the user
+System.Exception: Error saving changes in users archive
+ ---> System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\carme\DOTNET\Gamedream\Presentation\bin\Debug\net6.0\Data\users.json'.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategy(FileStream fileStream, String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, Int64 preallocationSize)
+   at System.IO.StreamWriter.ValidateArgsAndOpenPath(String path, Boolean append, Encoding encoding, Int32 bufferSize)
+   at System.IO.File.WriteAllText(String path, String contents)
+   at Gamedream.Data.UserRepository.SaveChanges() in C:\Users\carme\DOTNET\Gamedream\Data\UserRepository.cs:line 54
+   --- End of inner exception stack trace ---
+   at Gamedream.Data.UserRepository.SaveChanges() in C:\Users\carme\DOTNET\Gamedream\Data\UserRepository.cs:line 59
+   at Gamedream.Business.UserService.RegisterUser(String name, String lastname, String email, String password, String dni, DateTime birthdate) in C:\Users\carme\DOTNET\Gamedream\Business\UserService.cs:line 24
+
