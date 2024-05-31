@@ -35,7 +35,7 @@ public class UsersController : ControllerBase
     }
 
     
-    [HttpGet("Email")]
+    [HttpGet("Email", Name = "GetUserByEmail")]
     public IActionResult GetUser(string email)
     {
         
@@ -57,31 +57,29 @@ public class UsersController : ControllerBase
     }
 
    
-    /*
-    [HttpPut("{userId}")]
-    public IActionResult UpdateUser(int userId, UserUpdateDTO userUpdateDTO)
+   [HttpPut("Email")]
+
+    public IActionResult UpdateUser(string userEmail, [FromBody] UserUpdateDTO userUpdate)
     {
         if (!ModelState.IsValid)  {return BadRequest(ModelState); } 
 
-        if (!_authService.HasAccessToResource(Convert.ToInt32(userId), null, HttpContext.User)) 
-            {return Forbid(); }
-
-        try {
-            _userService.UpdateUser(userId, userUpdateDTO);
-            return NoContent();
-        }     
-        catch (KeyNotFoundException knfex)
+        try
         {
-            _logger.LogWarning($"No se ha encontrado el usuario con ID: {userId}. {knfex.Message}");
-            return NotFound($"No se ha encontrado el usuario con ID: {userId}. {knfex.Message}");
+            _userService.UpdateUser(userEmail, userUpdate);
+            return Ok($"El usuario con email: {userEmail} ha sido actualizado correctamente");
+        }
+         catch (KeyNotFoundException knfex)
+        {
+            _logger.LogWarning($"No se ha encontrado el usuario con email: {userEmail}. {knfex.Message}");
+            return NotFound($"No se ha encontrado el usuario con email: {userEmail}. {knfex.Message}");
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Error al actualizar el usuario con ID: {userId}. {ex.Message}");
-            return BadRequest($"Error al actualizar el usuario con ID: {userId}. {ex.Message}");
+            _logger.LogError($"Error al actualizar el usuario con email: {userEmail}. {ex.Message}");
+            return BadRequest($"Error al actualizar el usuario con ID: {userEmail}. {ex.Message}");
         }
     }
-*/
+
     
     [HttpDelete]
     public IActionResult DeleteUser(string email)
@@ -102,6 +100,36 @@ public class UsersController : ControllerBase
             _logger.LogError($"Error al eliminar el usuario con email: {email}. {ex.Message}");
             return BadRequest($"Error al eliminar el usuario con email: {email}. {ex.Message}");
         }
+    }
+
+    [HttpPost]
+    public IActionResult CreateUser([FromBody] UserCreateDTO userCreate)
+    {
+        try 
+        {
+            // Verificar si el modelo recibido es válido
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var userExist = _userService.GetUser(userCreate.Email);
+            if (userExist != null)
+            {
+                return BadRequest("El usuario ya está registrado.");
+            }
+
+            var user = _userService.RegisterUser(userCreate.Name, userCreate.Lastname, userCreate.Email, userCreate.Password, userCreate.DNI,userCreate.BirthDate);
+
+            // Retornar la acción exitosa junto con el nuevo usuario creado
+            return CreatedAtAction(nameof(GetAllUsers), new { userId = user.Id }, userCreate);
+        }     
+          catch (Exception ex)
+        {
+            _logger.LogError($"Error al registrar el usuario. {ex.Message}");
+            return BadRequest($"Error al registrar el usuario. {ex.Message}");
+        }
+        
     }
 
 }

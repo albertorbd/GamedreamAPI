@@ -41,7 +41,10 @@ public class UserRepository : IUserRepository
     }
 
      public void UpdateUser(User user){
-        _users[user.Id.ToString()]= user;
+         
+         _users[user.Id.ToString()]= user;
+            
+        
     }
 
      public void SaveChanges()

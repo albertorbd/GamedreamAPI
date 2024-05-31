@@ -16,12 +16,13 @@ private readonly IUserRepository _repository;
         _repository = repository;
     }
 
-public void RegisterUser(string name, string lastname, string email, string password, string dni, DateTime birthdate){
+public User RegisterUser(string name, string lastname, string email, string password, string dni, DateTime birthdate){
 try
  {
     User user= new(name,lastname, email, password, dni, birthdate);
     _repository.AddUser(user);
     _repository.SaveChanges();
+    return user;
  }   
  catch(Exception e){
     _repository.LogError("Error registering the user", e);
@@ -84,37 +85,17 @@ public void DeleteUser(string userEmail){
     }
 
 
-  public void UpdateUser(string userEmail, string  newEmail= null, string newPassword=null){
+  public void UpdateUser(string userEmail,  UserUpdateDTO userUpdateDTO){
     
-        try{
-        User userUpdated= _repository.GetUser(userEmail);
+       var user = _repository.GetUser(userEmail);
+       if (user==null){
+         throw new KeyNotFoundException($"Usuario con email {userEmail} no encontrado");
+       }
 
-        if(!string.IsNullOrEmpty(newEmail) && IsEmailTaken(newEmail)){
-            Console.WriteLine("El correo está siendo utilizado por otro usuario");
-            return;
-        }
-         if (!string.IsNullOrEmpty(newEmail))
-            {
-                userUpdated.Email = newEmail;
-                
-            }
-
-            if (!string.IsNullOrEmpty(newPassword))
-            {
-                userUpdated.Password = newPassword;
-                
-            }
-        
-        
-        _repository.UpdateUser(userUpdated);
-        _repository.SaveChanges();
-        
-
-        }catch(Exception e){
-            _repository.LogError("Error updating user",e);
-            throw new Exception("An error has ocurred updating user");
-
-        }
+       user.Email= userUpdateDTO.Email;
+       user.Password=userUpdateDTO.Password;
+       _repository.UpdateUser(user);
+       _repository.SaveChanges();
     }  
 
 public bool IsEmailTaken(string email){
