@@ -16,12 +16,13 @@ _repository=repository;
 }
 
 
-    public void RegisterVideogame(string name, string genre, string description, double price, string developer, string platform, int valoration){
+public Videogame RegisterVideogame( VideogameCreateDTO videogameCreateDTO){
  try
  {
-    Videogame videogame= new(name,genre, description, price, developer, platform, valoration);
+    Videogame videogame= new(videogameCreateDTO.Name,videogameCreateDTO.Genre, videogameCreateDTO.Description, videogameCreateDTO.Price, videogameCreateDTO.Developer, videogameCreateDTO.Platform, videogameCreateDTO.Valoration);
     _repository.AddVideogame(videogame);
     _repository.SaveChanges();
+    return videogame;
  }   
  catch(Exception e){
     _repository.LogError("Error registering the videogame", e);
@@ -29,19 +30,9 @@ _repository=repository;
  }
 }
 
-public void PrintAllVideogames(){
-    try
-    {
-        Dictionary<string, Videogame> videogames= _repository.GetAllVideogames();
-        Console.WriteLine("Lista de videojuegos: \n");
-        foreach (var videogame in videogames.Values){
-            Console.WriteLine($"ID: {videogame.Id}, Nombre: {videogame.Name}, Género: {videogame.Genre}, Descripción: {videogame.Description}, Desarrollador: {videogame.Developer}, Plataforma: {videogame.Platform}, Valoración:{videogame.Valoration}, Fecha de registro: {videogame.RegisterDate} ");
-        }
-    }catch(Exception e )
-    {
-        _repository.LogError("Error printing the videogames", e);
-        throw new Exception("An error has ocurred printing the videogames", e);
-    }
+public  IEnumerable<Videogame> GetAllVideogames(){
+   
+  return _repository.GetAllVideogames();
 }
 
     public bool CheckVideogame(string name)
@@ -49,7 +40,7 @@ public void PrintAllVideogames(){
         try
         {
             var videogames = _repository.GetAllVideogames();
-            foreach (var videogame in videogames.Values)
+            foreach (var videogame in videogames)
             {
                 if (videogame.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
                 {
@@ -93,20 +84,21 @@ public void PrintAllVideogames(){
         }
     }
 
-    public void UpdateVideogame(Videogame updatedVideogame, string newGenre, string newDescription, string newDeveloper, string newPlatform, int newValoration){
-        try{
-        updatedVideogame.Genre= newGenre;
-        updatedVideogame.Description= newDescription;
-        updatedVideogame.Developer= newDeveloper;
-        updatedVideogame.Platform=newPlatform;
-        updatedVideogame.Valoration=newValoration;
-        _repository.UpdateVideogame(updatedVideogame);
-        _repository.SaveChanges();
-        }catch(Exception e){
-            _repository.LogError("Error updating videogame",e);
-            throw new Exception("An error has ocurred updating videogame");
+    public void UpdateVideogame(string videogameName,  VideogameUpdateDTO videogameUpdateDTO){
+        var videogame = _repository.GetVideogame(videogameName);
+       if (videogame==null){
+         throw new KeyNotFoundException($"Videojuego con nombre {videogameName} no encontrado");
+       }
 
-        }
+       videogame.Name= videogameUpdateDTO.Name;
+       videogame.Genre=videogameUpdateDTO.Genre;
+       videogame.Description=videogameUpdateDTO.Description;
+       videogame.Price=videogameUpdateDTO.Price;
+       videogame.Developer=videogameUpdateDTO.Developer;
+       videogame.Platform=videogameUpdateDTO.Platform;
+       videogame.Valoration=videogameUpdateDTO.Valoration;
+       _repository.UpdateVideogame(videogame);
+       _repository.SaveChanges();
     }
      public string InputEmpty()
     {
@@ -131,46 +123,7 @@ public void PrintAllVideogames(){
         }
     }
 
- public void SearchVideogameByName()
-{
-    try{
-    string searchQuery;
-    do
-    {
-        Console.WriteLine("Escribe S para salir.");
-        Console.WriteLine("Buscar videojuego por nombre (mayúsculas y minúsculas): ");
-        searchQuery = InputEmpty();
-
-        if (searchQuery.ToLower() == "s")
-        {
-            break;
-        }
-
-        var matchingVideogames = _repository.GetAllVideogames().Values
-            .Where(v => v.Name.ToLower().Contains(searchQuery.ToLower()));
-
-        if (!matchingVideogames.Any())
-        {
-            Console.WriteLine("No se ha encontrado ningún videojuego con ese nombre.\n");
-        }
-        else
-        {
-            Console.WriteLine("Resultados de la búsqueda:\n");
-            foreach (var videogame in matchingVideogames)
-            {
-                Console.WriteLine($"ID: {videogame.Id}, Nombre: {videogame.Name}, Género: {videogame.Genre}, Descripción: {videogame.Description}, Precio: {videogame.Price},Desarrollador: {videogame.Developer}, Plataforma: {videogame.Platform}, Valoración: {videogame.Valoration}, Fecha de Registro: {videogame.RegisterDate}");
-            }
-            Console.WriteLine();
-        }
-    } while (searchQuery.ToLower() != "s");
-    } catch (Exception e)
-        {
-            _repository.LogError("Error searching videogame", e);
-            throw new Exception("An eror has ocurred searching the videogame", e);
-        }
-
-    }
-
+ 
 
 
 }

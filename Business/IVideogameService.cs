@@ -4,12 +4,12 @@ namespace GamedreamAPI.Business;
 
 public interface IVideogameService
 {
-   void RegisterVideogame(string name, string genre, string description, double price, string developer, string platform, int valoration);
-    void PrintAllVideogames();
+    public Videogame RegisterVideogame(VideogameCreateDTO videogameCreateDTO);
+    public IEnumerable<Videogame> GetAllVideogames();
     bool CheckVideogame(string name);
-    Videogame GetVideogame(string name);
+    public Videogame GetVideogame(string name);
     void DeleteVideogame(string name);
-    void UpdateVideogame(Videogame videogame, string newGenre, string newDescription, string newDeveloper, string newPlatform, int newValoration);
+    void UpdateVideogame(string videogameName, VideogameUpdateDTO videogameUpdateDTO);
     string InputEmpty();
-    void SearchVideogameByName();
+    
 }

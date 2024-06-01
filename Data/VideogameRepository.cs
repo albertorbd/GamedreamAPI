@@ -18,13 +18,14 @@ private Dictionary<string, Videogame> _videogame = new Dictionary<string, Videog
         _videogame[videogame.Id.ToString()] = videogame;
     }
      
-     public Dictionary<string,Videogame> GetAllVideogames(){
-         return new Dictionary<string, Videogame>(_videogame);
+   public IEnumerable<Videogame> GetAllVideogames(){
+         return _videogame.Values;
      }
+
 
      public Videogame GetVideogame(string name){
         var allGames = GetAllVideogames();
-            foreach (var videogames in allGames.Values)
+            foreach (var videogames in allGames)
             {
                 if (videogames.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
                 {

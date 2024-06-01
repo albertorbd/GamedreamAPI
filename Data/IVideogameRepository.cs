@@ -5,7 +5,7 @@ namespace GamedreamAPI.Data;
 public interface IVideogameRepository
 {
     void AddVideogame(Videogame videogame);
-    Dictionary<string,Videogame> GetAllVideogames();
+    IEnumerable<Videogame> GetAllVideogames();
     Videogame GetVideogame(string name);
     void DeleteVideogame(Videogame videogame);
     void UpdateVideogame(Videogame videogame);
