@@ -25,7 +25,7 @@ try
     return user;
  }   
  catch(Exception e){
-    _repository.LogError("Error registering the user", e);
+    
     throw new Exception("An error ocurred registering the user", e);
  }    
 }
@@ -51,7 +51,7 @@ try
         }
         catch (Exception e)
         {
-            _repository.LogError("Error checking user", e);
+            
             throw new Exception("An error has ocurred checking user", e);
         }
 }
@@ -61,7 +61,7 @@ public User GetUser(string email){
             return _repository.GetUser(email);
         }
         catch(Exception e){
-            _repository.LogError("Error getting the user", e);
+           
             throw new Exception("An error has ocurred getting the user", e);
         }
     }
@@ -79,7 +79,7 @@ public void DeleteUser(string userEmail){
             Console.WriteLine("No user found");
            }
         }catch(Exception e ){
-            _repository.LogError("Error deleting user", e);
+            
             throw new Exception("An error ocurred deleting the user", e);
         }
     }
@@ -109,7 +109,7 @@ public bool IsEmailTaken(string email){
             return false;
         }catch (Exception e)
         {
-            _repository.LogError("Error checking email", e);
+            
             throw new Exception("An error has ocurred checking if email is in use", e);
         }
 
@@ -130,7 +130,7 @@ try{
 }
 catch (Exception e)
         {
-            _repository.LogError("error checking user", e);
+            
             throw new Exception("An error has ocurred checking user", e);
         }
 }

@@ -1,17 +1,26 @@
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+
 namespace GamedreamAPI.Models;
 public class User
 {
-
+    [Key]
     public int Id { get; set; }
+    [Required]
     public string? Name { get; set; }
+    [Required]
     public string? Lastname { get; set; }
+    [Required]
     public string? Email { get; set; }
+    [Required]
     public string? Password { get; set; }
+    [Required]
     public string? DNI { get; set; }
+    [Required]
     public DateTime BirthDate { get; set; }
     public double Money { get; set; }
+    [JsonIgnore]
     public List<Operation> Operations { get; set; }
-    public Dictionary<string, double> Videogames { get; set; }
 
     
     
@@ -30,6 +39,5 @@ public class User
     BirthDate = birthdate;
     Money= 0.0;
     Operations= new List<Operation>();
-    Videogames= new Dictionary<string, double>();
     }
 }

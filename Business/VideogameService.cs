@@ -25,7 +25,7 @@ public Videogame RegisterVideogame( VideogameCreateDTO videogameCreateDTO){
     return videogame;
  }   
  catch(Exception e){
-    _repository.LogError("Error registering the videogame", e);
+    
     throw new Exception("An error ocurred registering the Videogame", e);
  }
 }
@@ -52,7 +52,7 @@ public  IEnumerable<Videogame> GetAllVideogames(){
         }
         catch (Exception e)
         {
-            _repository.LogError("Error checking if videogame exist", e);
+            
             throw new Exception("An error has ocurred checking the videogame", e);
         }
     }
@@ -61,7 +61,7 @@ public  IEnumerable<Videogame> GetAllVideogames(){
             return _repository.GetVideogame(name);
         }
         catch(Exception e){
-            _repository.LogError("Error getting the videogame", e);
+            
             throw new Exception("An error has ocurred getting the videogame", e);
         }
     }
@@ -79,7 +79,7 @@ public  IEnumerable<Videogame> GetAllVideogames(){
             Console.WriteLine("No se encontró un videojuego con ese nombre");
            }
         }catch(Exception e ){
-            _repository.LogError("Error deleting videogame", e);
+            
             throw new Exception("An error ocurred deleting the videogame", e);
         }
     }
@@ -118,7 +118,6 @@ public  IEnumerable<Videogame> GetAllVideogames(){
         }
         catch (Exception e)
         {
-            _repository.LogError("Error al comprobar el campo", e);
             throw new Exception("Ha ocurrido un error al comprobar el campo", e);
         }
     }

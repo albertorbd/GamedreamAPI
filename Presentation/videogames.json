@@ -53,5 +53,16 @@
     "Developer": "ASASSA",
     "Platform": "PC",
     "Valoration": 9
+  },
+  {
+    "Id": 5,
+    "Name": "asdadasda",
+    "Genre": "adasdad",
+    "Description": "adsadad",
+    "RegisterDate": "2024-06-02T22:41:43.0386512+02:00",
+    "Price": 30,
+    "Developer": "sasasasas",
+    "Platform": "assaasdas",
+    "Valoration": 9
   }
 ]

@@ -88,7 +88,7 @@ public class UsersController : ControllerBase
         try
         {
             _userService.DeleteUser(email);
-            return NoContent();
+            return Ok($"El usuerio con email {email} ha sido eliminado ");
         }
         catch (KeyNotFoundException knfex)
         {
