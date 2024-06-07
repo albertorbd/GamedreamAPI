@@ -192,6 +192,10 @@ namespace GamedreamAPI.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users");
@@ -206,7 +210,8 @@ namespace GamedreamAPI.Data.Migrations
                             Lastname = "Lopez",
                             Money = 60.0,
                             Name = "Jesus",
-                            Password = "12345"
+                            Password = "12345",
+                            Role = "user"
                         },
                         new
                         {
@@ -217,7 +222,8 @@ namespace GamedreamAPI.Data.Migrations
                             Lastname = "Riveiro del Bano",
                             Money = 50.0,
                             Name = "Alberto",
-                            Password = "12345"
+                            Password = "1234567",
+                            Role = "admin"
                         },
                         new
                         {
@@ -228,7 +234,8 @@ namespace GamedreamAPI.Data.Migrations
                             Lastname = "diaz",
                             Money = 0.0,
                             Name = "carlos",
-                            Password = "carlitos12"
+                            Password = "carlitos12",
+                            Role = "user"
                         },
                         new
                         {
@@ -239,7 +246,8 @@ namespace GamedreamAPI.Data.Migrations
                             Lastname = "M",
                             Money = 0.0,
                             Name = "Marcos",
-                            Password = "caballo14"
+                            Password = "caballo14",
+                            Role = "user"
                         },
                         new
                         {
@@ -250,7 +258,8 @@ namespace GamedreamAPI.Data.Migrations
                             Lastname = "Bes",
                             Money = 0.0,
                             Name = "Mario",
-                            Password = "caballo1213123"
+                            Password = "caballo1213123",
+                            Role = "user"
                         });
                 });
 

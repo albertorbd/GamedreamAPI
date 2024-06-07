@@ -21,7 +21,8 @@ namespace GamedreamAPI.Data.Migrations
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DNI = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Money = table.Column<double>(type: "float", nullable: false)
+                    Money = table.Column<double>(type: "float", nullable: false),
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -75,14 +76,14 @@ namespace GamedreamAPI.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "BirthDate", "DNI", "Email", "Lastname", "Money", "Name", "Password" },
+                columns: new[] { "Id", "BirthDate", "DNI", "Email", "Lastname", "Money", "Name", "Password", "Role" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(1990, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "345678", "jesusito@hotmail.es", "Lopez", 60.0, "Jesus", "12345" },
-                    { 2, new DateTime(1996, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "2532135", "albertoriveiro@hotmail.es", "Riveiro del Bano", 50.0, "Alberto", "12345" },
-                    { 3, new DateTime(1980, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "234567", "carlitos@hotmail.es", "diaz", 0.0, "carlos", "carlitos12" },
-                    { 4, new DateTime(1995, 5, 31, 12, 41, 4, 0, DateTimeKind.Unspecified), "2312313123", "marcos@hotmail.es", "M", 0.0, "Marcos", "caballo14" },
-                    { 5, new DateTime(2002, 5, 31, 12, 49, 44, 0, DateTimeKind.Unspecified), "21312321313", "mariobes@hotmail.com", "Bes", 0.0, "Mario", "caballo1213123" }
+                    { 1, new DateTime(1990, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "345678", "jesusito@hotmail.es", "Lopez", 60.0, "Jesus", "12345", "user" },
+                    { 2, new DateTime(1996, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "2532135", "albertoriveiro@hotmail.es", "Riveiro del Bano", 50.0, "Alberto", "1234567", "admin" },
+                    { 3, new DateTime(1980, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "234567", "carlitos@hotmail.es", "diaz", 0.0, "carlos", "carlitos12", "user" },
+                    { 4, new DateTime(1995, 5, 31, 12, 41, 4, 0, DateTimeKind.Unspecified), "2312313123", "marcos@hotmail.es", "M", 0.0, "Marcos", "caballo14", "user" },
+                    { 5, new DateTime(2002, 5, 31, 12, 49, 44, 0, DateTimeKind.Unspecified), "21312321313", "mariobes@hotmail.com", "Bes", 0.0, "Mario", "caballo1213123", "user" }
                 });
 
             migrationBuilder.InsertData(

@@ -4,13 +4,14 @@ namespace GamedreamAPI.Business;
 
 public interface IUserService
 {
-User RegisterUser(string name, string lastname, string email, string password, string dni, DateTime birthdate);
+User RegisterUser(UserCreateDTO userCreateDTO);
 IEnumerable<User> GetAllUsers();  
 bool CheckRepeatUser(string email, string dni);
-User GetUser(string email);
-void DeleteUser(string email);
-void UpdateUser(string email, UserUpdateDTO userUpdateDTO);
+User GetUserByEmail(string email);
+User GetUserById(int userId);
+void DeleteUser(int userId);
+void UpdateUser(int userId, UserUpdateDTO userUpdateDTO);
 
-bool loginCheck(string email, string password);
+User loginCheck(string email, string password);
 bool IsEmailTaken(string email);
 }

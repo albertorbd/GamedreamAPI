@@ -21,16 +21,18 @@ public class User
     public double Money { get; set; }
     [JsonIgnore]
     public List<Operation> Operations { get; set; }
+     [Required]
+    public string Role { get; set; }  = Roles.User;
 
     
     
-    public static int UserIdSeed { get; set; }
+    
 
     public User() {}
 
     public User (string name, string lastname, string email, string password, string dni, DateTime birthdate){
 
-    Id = UserIdSeed++;
+    
     Name = name;
     Lastname = lastname;
     Email = email;

@@ -4,6 +4,7 @@ using Microsoft.VisualBasic;
 using GamedreamAPI.Data;
 using GamedreamAPI.Models;
 using System.Buffers;
+using System.Reflection.Metadata.Ecma335;
 
 namespace GamedreamAPI.Business;
 public class UserService : IUserService
@@ -16,12 +17,11 @@ private readonly IUserRepository _repository;
         _repository = repository;
     }
 
-public User RegisterUser(string name, string lastname, string email, string password, string dni, DateTime birthdate){
+public User RegisterUser(UserCreateDTO userCreateDTO){
 try
  {
-    User user= new(name,lastname, email, password, dni, birthdate);
+    User user= new(userCreateDTO.Name, userCreateDTO.Lastname, userCreateDTO.Email, userCreateDTO.Password, userCreateDTO.DNI, userCreateDTO.BirthDate);
     _repository.AddUser(user);
-    _repository.SaveChanges();
     return user;
  }   
  catch(Exception e){
@@ -56,9 +56,9 @@ try
         }
 }
 
-public User GetUser(string email){
+public User GetUserByEmail(string email){
         try{
-            return _repository.GetUser(email);
+            return _repository.GetUserByEmail(email);
         }
         catch(Exception e){
            
@@ -66,10 +66,20 @@ public User GetUser(string email){
         }
     }
 
-public void DeleteUser(string userEmail){
+ public User GetUserById(int idUser){
+        try{
+            return _repository.GetUserById(idUser);
+        }
+        catch(Exception e){
+           
+            throw new Exception("An error has ocurred getting the user", e);
+        }
+    }   
+
+public void DeleteUser(int userId){
          
         try{
-          User getUser = GetUser(userEmail);
+          User getUser = GetUserById(userId);
 
            if (getUser != null){
            _repository.DeleteUser(getUser);
@@ -85,11 +95,11 @@ public void DeleteUser(string userEmail){
     }
 
 
-  public void UpdateUser(string userEmail,  UserUpdateDTO userUpdateDTO){
+  public void UpdateUser(int userId,  UserUpdateDTO userUpdateDTO){
     
-       var user = _repository.GetUser(userEmail);
+       var user = _repository.GetUserById(userId);
        if (user==null){
-         throw new KeyNotFoundException($"Usuario con email {userEmail} no encontrado");
+         throw new KeyNotFoundException($"Usuario con Id {userId} no encontrado");
        }
 
        user.Email= userUpdateDTO.Email;
@@ -118,21 +128,22 @@ public bool IsEmailTaken(string email){
 
     
     
-public bool loginCheck(string email, string password){
-try{
-   foreach(var user in _repository.GetAllUsers()){
-    if((user.Email.Equals(email, StringComparison.OrdinalIgnoreCase) &&
-     user.Password.Equals(password))){
-        return true;
-     }
-   } 
-   return false;
-}
-catch (Exception e)
+public User loginCheck(string email, string password)
+{
+    if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+    {
+        throw new ArgumentException("El email y la contraseña son obligatorios.");
+    }
+
+    foreach (var userToLog in _repository.GetAllUsers())
+    {
+        if (userToLog.Email.Equals(email, StringComparison.OrdinalIgnoreCase) &&
+            userToLog.Password.Equals(password))
         {
-            
-            throw new Exception("An error has ocurred checking user", e);
+            return userToLog;
         }
+    }
+    return null;
 }
 
 }

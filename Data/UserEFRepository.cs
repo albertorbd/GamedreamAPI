@@ -24,9 +24,14 @@ namespace GamedreamAPI.Data
             return users;
         }
 
-        public User GetUser(string userEmail)
+        public User GetUserByEmail(string UserEmail)
         {
-            var user = _context.Users.FirstOrDefault(user => user.Email == userEmail);
+            var user = _context.Users.FirstOrDefault(user => user.Email == UserEmail);
+            return user;
+        }
+        public User GetUserById(int UserId)
+        {
+            var user = _context.Users.FirstOrDefault(user => user.Id == UserId);
             return user;
         }
 
@@ -38,7 +43,7 @@ namespace GamedreamAPI.Data
         }
 
         public void DeleteUser(User userDelete) {
-            var user = GetUser(userDelete.Email);
+            var user = GetUserById(userDelete.Id);
             _context.Users.Remove(user);
             SaveChanges();
         }

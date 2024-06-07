@@ -22,7 +22,7 @@ namespace GamedreamAPI.Data
             modelBuilder.Entity<User>().HasData(
             new User { Id = 1, Name = "Jesus", Lastname = "Lopez", Email = "jesusito@hotmail.es", Password = "12345", DNI = "345678", BirthDate = new DateTime(1990, 12, 20), Money = 60},
 
-            new User { Id = 2, Name = "Alberto", Lastname = "Riveiro del Bano", Email = "albertoriveiro@hotmail.es", Password = "12345", DNI = "2532135", BirthDate = new DateTime(1996, 10, 2), Money = 50},
+            new User { Id = 2, Name = "Alberto", Lastname = "Riveiro del Bano", Email = "albertoriveiro@hotmail.es", Password = "1234567", DNI = "2532135", BirthDate = new DateTime(1996, 10, 2), Money = 50, Role= Roles.Admin},
 
             new User { Id = 3, Name = "carlos", Lastname = "diaz", Email = "carlitos@hotmail.es", Password = "carlitos12", DNI = "234567", BirthDate = new DateTime(1980, 2, 10), Money = 0},
 

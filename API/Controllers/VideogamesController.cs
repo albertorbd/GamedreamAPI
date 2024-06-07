@@ -34,7 +34,8 @@ public class VideogamesController : ControllerBase
         }
     }
 
-    
+
+    [Authorize(Roles = Roles.Admin + "," + Roles.User)]
     [HttpGet("Name", Name = "GetVideogameByName")]
     public IActionResult GetVideogame(string videogameName)
     {
@@ -56,6 +57,7 @@ public class VideogamesController : ControllerBase
         }
     }
 
+    [Authorize(Roles = Roles.Admin)]
     [HttpDelete]
     public IActionResult DeleteVideogame(string videogameName)
     {
@@ -79,6 +81,7 @@ public class VideogamesController : ControllerBase
 
     [HttpPut("Name")]
 
+    [Authorize(Roles = Roles.Admin)]
     public IActionResult UpdateVideogame(string videogameName, [FromBody] VideogameUpdateDTO videogameUpdate)
     {
         if (!ModelState.IsValid)  {return BadRequest(ModelState); } 
@@ -100,6 +103,7 @@ public class VideogamesController : ControllerBase
         }
     }
 
+    [Authorize(Roles = Roles.Admin)]
     [HttpPost]
     public IActionResult CreateVideogame([FromBody] VideogameCreateDTO videogameCreate)
     {
