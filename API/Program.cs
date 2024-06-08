@@ -27,6 +27,8 @@ builder.Services.AddScoped<IVideogameService, VideogameService>();
 builder.Services.AddScoped<IUserRepository, UserEFRepository>();
 builder.Services.AddScoped<IVideogameRepository, VideogameEFRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IOperationService, OperationService>();
+builder.Services.AddScoped<IOperationRepository, OperationEFRepository>();
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("ServerDB_dockernet");
 

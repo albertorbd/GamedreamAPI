@@ -49,12 +49,14 @@ namespace GamedreamAPI.Data.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<int>("VideogameId")
+                    b.Property<int?>("VideogameId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
+
+                    b.HasIndex("VideogameId");
 
                     b.ToTable("Operations");
 
@@ -67,8 +69,7 @@ namespace GamedreamAPI.Data.Migrations
                             Date = new DateTime(2024, 5, 6, 0, 9, 2, 0, DateTimeKind.Unspecified),
                             Method = "PayPal",
                             Quantity = 1.0,
-                            UserId = 2,
-                            VideogameId = 0
+                            UserId = 2
                         },
                         new
                         {
@@ -78,7 +79,7 @@ namespace GamedreamAPI.Data.Migrations
                             Date = new DateTime(2024, 5, 6, 0, 9, 12, 0, DateTimeKind.Unspecified),
                             Quantity = 1.0,
                             UserId = 2,
-                            VideogameId = 3
+                            VideogameId = 4
                         },
                         new
                         {
@@ -88,8 +89,7 @@ namespace GamedreamAPI.Data.Migrations
                             Date = new DateTime(2024, 5, 3, 20, 44, 36, 0, DateTimeKind.Unspecified),
                             Method = "Tarjeta de crédito",
                             Quantity = 1.0,
-                            UserId = 3,
-                            VideogameId = 0
+                            UserId = 3
                         },
                         new
                         {
@@ -99,8 +99,7 @@ namespace GamedreamAPI.Data.Migrations
                             Date = new DateTime(2024, 5, 3, 20, 44, 52, 0, DateTimeKind.Unspecified),
                             Method = "PayPal",
                             Quantity = 1.0,
-                            UserId = 3,
-                            VideogameId = 0
+                            UserId = 3
                         },
                         new
                         {
@@ -110,8 +109,7 @@ namespace GamedreamAPI.Data.Migrations
                             Date = new DateTime(2024, 5, 5, 23, 33, 6, 0, DateTimeKind.Unspecified),
                             Method = "Tarjeta de crédito",
                             Quantity = 1.0,
-                            UserId = 3,
-                            VideogameId = 0
+                            UserId = 3
                         },
                         new
                         {
@@ -121,8 +119,7 @@ namespace GamedreamAPI.Data.Migrations
                             Date = new DateTime(2024, 5, 5, 23, 39, 18, 0, DateTimeKind.Unspecified),
                             Method = "Tarjeta de crédito",
                             Quantity = 1.0,
-                            UserId = 3,
-                            VideogameId = 0
+                            UserId = 3
                         },
                         new
                         {
@@ -130,10 +127,8 @@ namespace GamedreamAPI.Data.Migrations
                             Amount = 70.0,
                             Concept = "Dragons dogma 2",
                             Date = new DateTime(2024, 5, 5, 23, 39, 36, 0, DateTimeKind.Unspecified),
-                            Method = "Comprar Dragons dogma 2",
                             Quantity = 1.0,
-                            UserId = 3,
-                            VideogameId = 0
+                            UserId = 3
                         },
                         new
                         {
@@ -143,8 +138,7 @@ namespace GamedreamAPI.Data.Migrations
                             Date = new DateTime(2024, 5, 5, 23, 52, 22, 0, DateTimeKind.Unspecified),
                             Method = "PayPal",
                             Quantity = 1.0,
-                            UserId = 3,
-                            VideogameId = 0
+                            UserId = 3
                         },
                         new
                         {
@@ -154,7 +148,7 @@ namespace GamedreamAPI.Data.Migrations
                             Date = new DateTime(2024, 5, 5, 23, 55, 20, 0, DateTimeKind.Unspecified),
                             Quantity = 0.0,
                             UserId = 3,
-                            VideogameId = 2
+                            VideogameId = 3
                         });
                 });
 
@@ -383,11 +377,19 @@ namespace GamedreamAPI.Data.Migrations
 
             modelBuilder.Entity("GamedreamAPI.Models.Operation", b =>
                 {
-                    b.HasOne("GamedreamAPI.Models.User", null)
+                    b.HasOne("GamedreamAPI.Models.User", "user")
                         .WithMany("Operations")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("GamedreamAPI.Models.Videogame", "videogame")
+                        .WithMany()
+                        .HasForeignKey("VideogameId");
+
+                    b.Navigation("user");
+
+                    b.Navigation("videogame");
                 });
 
             modelBuilder.Entity("GamedreamAPI.Models.User", b =>

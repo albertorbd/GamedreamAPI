@@ -20,11 +20,13 @@ public class VideogamesController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<Videogame>> GetAllVideogames()
+    public ActionResult<IEnumerable<Videogame>> GetAllVideogames([FromQuery]VideogameQueryParameters videogameQueryParameters, bool orderByIdDesc)
     {
+
+         if (!ModelState.IsValid)  {return BadRequest(ModelState); } 
         try 
         {
-            var videogames = _videogameService.GetAllVideogames();
+            var videogames = _videogameService.GetAllVideogames(videogameQueryParameters, orderByIdDesc);
             return Ok(videogames);
         }     
         catch (Exception ex)

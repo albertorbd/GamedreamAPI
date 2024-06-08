@@ -56,7 +56,7 @@ namespace GamedreamAPI.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    VideogameId = table.Column<int>(type: "int", nullable: false),
+                    VideogameId = table.Column<int>(type: "int", nullable: true),
                     Concept = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Quantity = table.Column<double>(type: "float", nullable: false),
@@ -72,6 +72,11 @@ namespace GamedreamAPI.Data.Migrations
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Operations_Videogames_VideogameId",
+                        column: x => x.VideogameId,
+                        principalTable: "Videogames",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
@@ -104,21 +109,26 @@ namespace GamedreamAPI.Data.Migrations
                 columns: new[] { "Id", "Amount", "Concept", "Date", "Method", "Quantity", "UserId", "VideogameId" },
                 values: new object[,]
                 {
-                    { 1, 100.0, "Ingreso", new DateTime(2024, 5, 6, 0, 9, 2, 0, DateTimeKind.Unspecified), "PayPal", 1.0, 2, 0 },
-                    { 2, 0.0, "Comprar Manor lords", new DateTime(2024, 5, 6, 0, 9, 12, 0, DateTimeKind.Unspecified), null, 1.0, 2, 3 },
-                    { 3, 100.0, "Ingreso", new DateTime(2024, 5, 3, 20, 44, 36, 0, DateTimeKind.Unspecified), "Tarjeta de crédito", 1.0, 3, 0 },
-                    { 4, 30.0, "Retirada", new DateTime(2024, 5, 3, 20, 44, 52, 0, DateTimeKind.Unspecified), "PayPal", 1.0, 3, 0 },
-                    { 5, 50.0, "Comprar Persona 5", new DateTime(2024, 5, 5, 23, 33, 6, 0, DateTimeKind.Unspecified), "Tarjeta de crédito", 1.0, 3, 0 },
-                    { 6, 50.0, "Ingreso", new DateTime(2024, 5, 5, 23, 39, 18, 0, DateTimeKind.Unspecified), "Tarjeta de crédito", 1.0, 3, 0 },
-                    { 7, 70.0, "Dragons dogma 2", new DateTime(2024, 5, 5, 23, 39, 36, 0, DateTimeKind.Unspecified), "Comprar Dragons dogma 2", 1.0, 3, 0 },
-                    { 8, 100.0, "Ingreso", new DateTime(2024, 5, 5, 23, 52, 22, 0, DateTimeKind.Unspecified), "PayPal", 1.0, 3, 0 },
-                    { 9, 0.0, "Comprar Final Fantasy XV", new DateTime(2024, 5, 5, 23, 55, 20, 0, DateTimeKind.Unspecified), null, 0.0, 3, 2 }
+                    { 1, 100.0, "Ingreso", new DateTime(2024, 5, 6, 0, 9, 2, 0, DateTimeKind.Unspecified), "PayPal", 1.0, 2, null },
+                    { 2, 0.0, "Comprar Manor lords", new DateTime(2024, 5, 6, 0, 9, 12, 0, DateTimeKind.Unspecified), null, 1.0, 2, 4 },
+                    { 3, 100.0, "Ingreso", new DateTime(2024, 5, 3, 20, 44, 36, 0, DateTimeKind.Unspecified), "Tarjeta de crédito", 1.0, 3, null },
+                    { 4, 30.0, "Retirada", new DateTime(2024, 5, 3, 20, 44, 52, 0, DateTimeKind.Unspecified), "PayPal", 1.0, 3, null },
+                    { 5, 50.0, "Comprar Persona 5", new DateTime(2024, 5, 5, 23, 33, 6, 0, DateTimeKind.Unspecified), "Tarjeta de crédito", 1.0, 3, null },
+                    { 6, 50.0, "Ingreso", new DateTime(2024, 5, 5, 23, 39, 18, 0, DateTimeKind.Unspecified), "Tarjeta de crédito", 1.0, 3, null },
+                    { 7, 70.0, "Dragons dogma 2", new DateTime(2024, 5, 5, 23, 39, 36, 0, DateTimeKind.Unspecified), null, 1.0, 3, null },
+                    { 8, 100.0, "Ingreso", new DateTime(2024, 5, 5, 23, 52, 22, 0, DateTimeKind.Unspecified), "PayPal", 1.0, 3, null },
+                    { 9, 0.0, "Comprar Final Fantasy XV", new DateTime(2024, 5, 5, 23, 55, 20, 0, DateTimeKind.Unspecified), null, 0.0, 3, 3 }
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Operations_UserId",
                 table: "Operations",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Operations_VideogameId",
+                table: "Operations",
+                column: "VideogameId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -127,10 +137,10 @@ namespace GamedreamAPI.Data.Migrations
                 name: "Operations");
 
             migrationBuilder.DropTable(
-                name: "Videogames");
+                name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Videogames");
         }
     }
 }

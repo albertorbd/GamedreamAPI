@@ -48,15 +48,15 @@ namespace GamedreamAPI.Data
 
             modelBuilder.Entity<Operation>().HasData(
                 
-            new Operation { Id = 1, UserId = 2, VideogameId = 0, Concept = "Ingreso", Date = new DateTime(2024, 5, 6, 0, 9, 2), Quantity = 1, Amount = 100, Method = "PayPal" },
-            new Operation { Id = 2, UserId = 2, VideogameId = 3, Concept = "Comprar Manor lords", Date = new DateTime(2024, 5, 6, 0, 9, 12), Quantity = 1, Amount = 0, Method = null },
-            new Operation { Id = 3, UserId = 3, VideogameId = 0, Concept = "Ingreso", Date = new DateTime(2024, 5, 3, 20, 44, 36), Quantity = 1, Amount = 100, Method = "Tarjeta de crédito" },
-            new Operation { Id = 4, UserId = 3, VideogameId = 0, Concept = "Retirada", Date = new DateTime(2024, 5, 3, 20, 44, 52), Quantity = 1, Amount = 30, Method = "PayPal" },
-            new Operation { Id = 5, UserId = 3, VideogameId = 0, Concept = "Comprar Persona 5", Date = new DateTime(2024, 5, 5, 23, 33, 6), Quantity = 1, Amount = 50, Method = "Tarjeta de crédito" },
-            new Operation { Id = 6, UserId = 3, VideogameId = 0, Concept = "Ingreso", Date = new DateTime(2024, 5, 5, 23, 39, 18), Quantity = 1, Amount = 50, Method = "Tarjeta de crédito" },
-            new Operation { Id = 7, UserId = 3, VideogameId = 0, Concept = "Dragons dogma 2", Date = new DateTime(2024, 5, 5, 23, 39, 36), Quantity = 1, Amount = 70, Method = "Comprar Dragons dogma 2" },
-            new Operation { Id = 8, UserId = 3, VideogameId = 0, Concept = "Ingreso", Date = new DateTime(2024, 5, 5, 23, 52, 22), Quantity = 1, Amount = 100, Method = "PayPal" },
-            new Operation { Id = 9, UserId = 3, VideogameId = 2, Concept = "Comprar Final Fantasy XV", Date = new DateTime(2024, 5, 5, 23, 55, 20), Quantity = 0, Amount = 0, Method = null } );
+            new Operation { Id = 1, UserId = 2, VideogameId = null, Concept = "Ingreso", Date = new DateTime(2024, 5, 6, 0, 9, 2), Quantity = 1, Amount = 100, Method = "PayPal" },
+            new Operation { Id = 2, UserId = 2, VideogameId = 4, Concept = "Comprar Manor lords", Date = new DateTime(2024, 5, 6, 0, 9, 12), Quantity = 1, Amount = 0, Method = null },
+            new Operation { Id = 3, UserId = 3, VideogameId = null, Concept = "Ingreso", Date = new DateTime(2024, 5, 3, 20, 44, 36), Quantity = 1, Amount = 100, Method = "Tarjeta de crédito" },
+            new Operation { Id = 4, UserId = 3, VideogameId = null, Concept = "Retirada", Date = new DateTime(2024, 5, 3, 20, 44, 52), Quantity = 1, Amount = 30, Method = "PayPal" },
+            new Operation { Id = 5, UserId = 3, VideogameId = null, Concept = "Comprar Persona 5", Date = new DateTime(2024, 5, 5, 23, 33, 6), Quantity = 1, Amount = 50, Method = "Tarjeta de crédito" },
+            new Operation { Id = 6, UserId = 3, VideogameId = null, Concept = "Ingreso", Date = new DateTime(2024, 5, 5, 23, 39, 18), Quantity = 1, Amount = 50, Method = "Tarjeta de crédito" },
+            new Operation { Id = 7, UserId = 3, VideogameId = null, Concept = "Dragons dogma 2", Date = new DateTime(2024, 5, 5, 23, 39, 36), Quantity = 1, Amount = 70, Method =null },
+            new Operation { Id = 8, UserId = 3, VideogameId = null, Concept = "Ingreso", Date = new DateTime(2024, 5, 5, 23, 52, 22), Quantity = 1, Amount = 100, Method = "PayPal" },
+            new Operation { Id = 9, UserId = 3, VideogameId = 3, Concept = "Comprar Final Fantasy XV", Date = new DateTime(2024, 5, 5, 23, 55, 20), Quantity = 0, Amount = 0, Method = null } );
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -30,35 +30,15 @@ public Videogame RegisterVideogame( VideogameCreateDTO videogameCreateDTO){
  }
 }
 
-public  IEnumerable<Videogame> GetAllVideogames(){
+public  IEnumerable<Videogame> GetAllVideogames(VideogameQueryParameters videogameQueryParameters, bool orderByIdDesc){
    
-  return _repository.GetAllVideogames();
+  return _repository.GetAllVideogames(videogameQueryParameters, orderByIdDesc);
 }
 
-    public bool CheckVideogame(string name)
-    {
-        try
-        {
-            var videogames = _repository.GetAllVideogames();
-            foreach (var videogame in videogames)
-            {
-                if (videogame.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-        catch (Exception e)
-        {
-            
-            throw new Exception("An error has ocurred checking the videogame", e);
-        }
-    }
+    
     public Videogame GetVideogame(string name){
         try{
-            return _repository.GetVideogame(name);
+            return _repository.GetVideogameByName(name);
         }
         catch(Exception e){
             
@@ -85,7 +65,7 @@ public  IEnumerable<Videogame> GetAllVideogames(){
     }
 
     public void UpdateVideogame(string videogameName,  VideogameUpdateDTO videogameUpdateDTO){
-        var videogame = _repository.GetVideogame(videogameName);
+        var videogame = _repository.GetVideogameByName(videogameName);
        if (videogame==null){
          throw new KeyNotFoundException($"Videojuego con nombre {videogameName} no encontrado");
        }

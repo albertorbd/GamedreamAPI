@@ -1,13 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using GamedreamAPI.Business;
-using GamedreamAPI.Models;
-using Microsoft.Extensions.Logging;
-using Serilog.Core;
 
 namespace GamedreamAPI.API.Controllers
 {
@@ -18,13 +10,12 @@ namespace GamedreamAPI.API.Controllers
         private readonly IUserService _userService;
         private readonly IAuthService _authService;
          private readonly ILogger<AuthController> _logger;
-        private readonly IConfiguration _configuration;
 
-        public AuthController(IUserService userService, IAuthService authService, IConfiguration configuration,  ILogger<AuthController> logger)
+
+        public AuthController(IUserService userService, IAuthService authService, ILogger<AuthController> logger)
         {
             _logger=logger;
             _userService = userService;
-            _configuration = configuration;
             _authService=authService;
         }
 
