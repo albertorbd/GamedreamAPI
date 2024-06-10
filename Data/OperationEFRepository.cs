@@ -1,5 +1,5 @@
 using GamedreamAPI.Models;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace GamedreamAPI.Data
 {
@@ -23,11 +23,11 @@ namespace GamedreamAPI.Data
             SaveChanges();
         }
 
-        public IEnumerable<Operation> GetAllOperations(OperationQueryParameters operationQueryParameters) 
+        public IEnumerable<Operation> GetAllOperations(int userId, OperationQueryParameters operationQueryParameters) 
         {   
             var query = _context.Operations.AsQueryable();
             
-            query = _context.Operations.Where(t => t.UserId == operationQueryParameters.UserId);
+            query = _context.Operations.Where(t => t.UserId == userId);
 
             if (operationQueryParameters.VideogameId.HasValue)
             {

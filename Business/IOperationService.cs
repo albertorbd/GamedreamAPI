@@ -1,4 +1,4 @@
-using System.Reflection.PortableExecutable;
+
 using GamedreamAPI.Models;
 namespace GamedreamAPI.Business;
 
@@ -8,7 +8,7 @@ void MakeDeposit(MoneyTransferDTO moneyTransferDTO);
 void MakeWithdrawal(MoneyTransferDTO moneyTransferDTO);
 void BuyVideogame(BuyVideogameDTO buyVideogameDTO);
 
-public IEnumerable<Operation> GetAllOperations(OperationQueryParameters operationQueryParameters);
+public IEnumerable<Operation> GetAllOperations(int userId, OperationQueryParameters operationQueryParameters);
 
 public Dictionary<string, double> VideogamesPurchased(int userId); 
 }

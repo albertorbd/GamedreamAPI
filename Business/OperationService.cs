@@ -1,10 +1,7 @@
-using System.Security.Cryptography;
-using Microsoft.VisualBasic;
 
 using GamedreamAPI.Data;
 using GamedreamAPI.Models;
-using System.Buffers;
-using System.Reflection.Metadata.Ecma335;
+
 
 namespace GamedreamAPI.Business;
 public class OperationService : IOperationService
@@ -13,14 +10,13 @@ public class OperationService : IOperationService
 private readonly IOperationRepository _operationrepository;
 private readonly IUserRepository _userRepository;
 private readonly IVideogameRepository _videogameRepository;
-private readonly GamedreamContext _context;
 
-    public OperationService(IOperationRepository operationrepository, IUserRepository userRepository, IVideogameRepository videogameRepository, GamedreamContext context )
+
+    public OperationService(IOperationRepository operationrepository, IUserRepository userRepository, IVideogameRepository videogameRepository )
     {
         _operationrepository = operationrepository;
         _userRepository = userRepository;
         _videogameRepository= videogameRepository;
-        _context = context;
     }
 
 public void MakeDeposit(MoneyTransferDTO moneyTransferDTO)
@@ -79,15 +75,15 @@ public void MakeDeposit(MoneyTransferDTO moneyTransferDTO)
     _operationrepository.AddOperation(operation);
 }
 
-public IEnumerable<Operation> GetAllOperations(OperationQueryParameters operationQueryParameters)
+public IEnumerable<Operation> GetAllOperations(int userId, OperationQueryParameters operationQueryParameters)
     {
-        return _operationrepository.GetAllOperations(operationQueryParameters);
+        return _operationrepository.GetAllOperations(userId, operationQueryParameters);
     }
 
 
   public Dictionary<string, double> VideogamesPurchased(int userId)
 {
-    var userOperations = _operationrepository.GetAllOperations(new OperationQueryParameters { UserId = userId });
+    var userOperations = _operationrepository.GetAllOperations(userId, new OperationQueryParameters());
 
     var totalQuantityByVideogame = new Dictionary<string, double>();
 

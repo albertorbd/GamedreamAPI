@@ -40,7 +40,7 @@ public class UsersController : ControllerBase
     }
 
     [Authorize(Roles = Roles.Admin)]
-    [HttpGet("Email", Name = "GetUserByEmail")]
+    [HttpGet("byEmail", Name = "GetUserByEmail")]
     public IActionResult GetUserByEmail(string email)
     {
         
@@ -113,7 +113,7 @@ public class UsersController : ControllerBase
     }
 
     [Authorize(Roles = Roles.Admin + "," + Roles.User)]
-    [HttpDelete]
+    [HttpDelete("{userId}")]
     public IActionResult DeleteUser(int userId)
     {
         if (!_authService.HasAccessToResource(Convert.ToInt32(userId), HttpContext.User)) 

@@ -44,9 +44,9 @@ namespace GamedreamAPI.Data
             }
 
             if (orderByIdDesc) 
-    {
-        query = query.OrderByDescending(p => p.Id);
-    }
+         {
+            query = query.OrderByDescending(p => p.Id);
+            }
 
             var result = query.ToList();
             return result;

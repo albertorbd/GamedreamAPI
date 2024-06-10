@@ -1,0 +1,10 @@
+2024-06-10 18:09:05.427 +02:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2024-06-10 16:10:25.873 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2024-06-10 16:10:27.999 +00:00 [WRN] Storing keys in a directory '/root/.aspnet/DataProtection-Keys' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+2024-06-10 16:10:28.011 +00:00 [WRN] No XML encryptor configured. Key {6a7a385f-8954-40d1-90fa-ffe0ae02c571} may be persisted to storage in unencrypted form.
+2024-06-10 16:20:15.134 +00:00 [WRN] Failed to determine the https port for redirect.
+2024-06-10 16:22:40.867 +00:00 [ERR] Error al hacer el depósito del usuario con ID: 2. Fondos insuficientes para realizar esta operación
+2024-06-10 16:54:27.549 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2024-06-10 16:54:33.759 +00:00 [WRN] Storing keys in a directory '/root/.aspnet/DataProtection-Keys' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+2024-06-10 16:54:33.772 +00:00 [WRN] No XML encryptor configured. Key {6b2d616e-961d-4906-88f0-4b690c353667} may be persisted to storage in unencrypted form.
+2024-06-10 16:55:05.584 +00:00 [WRN] Failed to determine the https port for redirect.

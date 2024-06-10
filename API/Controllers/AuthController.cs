@@ -19,7 +19,7 @@ namespace GamedreamAPI.API.Controllers
             _authService=authService;
         }
 
-        [HttpPost("Login")]
+        [HttpPost("login")]
         public IActionResult Login([FromBody] UserLoginDTO userDto)
         {
 

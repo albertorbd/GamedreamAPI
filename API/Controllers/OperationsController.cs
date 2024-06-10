@@ -26,7 +26,7 @@ namespace GamedreamAPI.API.Controllers
         }
 
     [Authorize(Roles = Roles.Admin + "," + Roles.User)]
-    [HttpPost("Deposit")]
+    [HttpPost("deposit")]
     public IActionResult MakeDeposit([FromBody] MoneyTransferDTO moneyTransferDTO)
     {
         if (!_authService.HasAccessToResource(Convert.ToInt32(moneyTransferDTO.UserId), HttpContext.User)) 
@@ -49,7 +49,7 @@ namespace GamedreamAPI.API.Controllers
     }
 
     [Authorize(Roles = Roles.Admin + "," + Roles.User)]
-    [HttpPost("WithDrawal")]
+    [HttpPost("withdrawal")]
     public IActionResult MakeWithDrawal([FromBody] MoneyTransferDTO moneyTransferDTO)
     {
         if (!_authService.HasAccessToResource(Convert.ToInt32(moneyTransferDTO.UserId), HttpContext.User)) 
@@ -72,7 +72,7 @@ namespace GamedreamAPI.API.Controllers
     }
 
     [Authorize(Roles = Roles.Admin + "," + Roles.User)]
-    [HttpPost("BuyVideogame")]
+    [HttpPost("buyVideogame")]
     public IActionResult BuyVideogame([FromBody] BuyVideogameDTO buyVideogameDTO)
     {
         if (!_authService.HasAccessToResource(Convert.ToInt32(buyVideogameDTO.UserId), HttpContext.User)) 
@@ -95,14 +95,14 @@ namespace GamedreamAPI.API.Controllers
     }
 
     [Authorize(Roles = Roles.Admin + "," + Roles.User)]
-    [HttpGet]
-    public ActionResult<IEnumerable<Operation>> GetOperations([FromQuery] OperationQueryParameters operationQueryParameters)
+    [HttpGet("{userId}")]
+    public ActionResult<IEnumerable<Operation>> GetOperations( int userId, [FromQuery]OperationQueryParameters operationQueryParameters)
     {
-        if (!_authService.HasAccessToResource(Convert.ToInt32(operationQueryParameters.UserId), HttpContext.User)) 
+        if (!_authService.HasAccessToResource(Convert.ToInt32(userId), HttpContext.User)) 
             {return Forbid(); }
 
         try {
-            var operations = _operationService.GetAllOperations(operationQueryParameters);
+            var operations = _operationService.GetAllOperations( userId, operationQueryParameters);
             return Ok(operations);
         }     
         catch (Exception ex)
@@ -114,9 +114,12 @@ namespace GamedreamAPI.API.Controllers
 
 
     [Authorize(Roles = Roles.Admin + "," + Roles.User)] 
-        [HttpGet("{userId}/purchasedvideogames")]
+        [HttpGet("{userId}/videogames")]
      public IActionResult GetPurchasedVideogames(int userId)
         {
+            if (!_authService.HasAccessToResource(Convert.ToInt32(userId), HttpContext.User)) 
+            {return Forbid(); }
+
             try
             {
                 var purchasedVideogames = _operationService.VideogamesPurchased(userId);

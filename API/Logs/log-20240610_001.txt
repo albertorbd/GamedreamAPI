@@ -1,0 +1,14 @@
+2024-06-10 19:04:22.202 +02:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2024-06-10 19:04:51.834 +02:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2024-06-10 19:05:06.800 +02:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2024-06-10 17:05:52.681 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2024-06-10 17:05:54.860 +00:00 [WRN] Storing keys in a directory '/root/.aspnet/DataProtection-Keys' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+2024-06-10 17:05:54.874 +00:00 [WRN] No XML encryptor configured. Key {68e731a9-5311-43b4-bba8-f32e999065ba} may be persisted to storage in unencrypted form.
+2024-06-10 17:06:14.304 +00:00 [WRN] Failed to determine the https port for redirect.
+2024-06-10 17:13:01.117 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2024-06-10 17:13:03.436 +00:00 [WRN] Storing keys in a directory '/root/.aspnet/DataProtection-Keys' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+2024-06-10 17:13:03.448 +00:00 [WRN] No XML encryptor configured. Key {5dd1a276-7f49-4f74-a389-babde2995759} may be persisted to storage in unencrypted form.
+2024-06-10 17:13:17.108 +00:00 [WRN] Failed to determine the https port for redirect.
+2024-06-10 17:18:20.838 +00:00 [ERR] Error al hacer el depósito del usuario con ID: 6. Fondos insuficientes para realizar esta operación
+2024-06-10 17:52:22.124 +00:00 [ERR] Error al hacer la compra del usuario con ID: 7. No tienes suficiente saldo para realizar la compra
+2024-06-10 17:53:16.512 +00:00 [ERR] Error al hacer el depósito del usuario con ID: 7. Fondos insuficientes para realizar esta operación

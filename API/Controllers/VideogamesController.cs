@@ -38,7 +38,7 @@ public class VideogamesController : ControllerBase
 
 
     [Authorize(Roles = Roles.Admin + "," + Roles.User)]
-    [HttpGet("Name", Name = "GetVideogameByName")]
+    [HttpGet("byName", Name = "GetVideogameByName")]
     public IActionResult GetVideogame(string videogameName)
     {
         
@@ -81,7 +81,7 @@ public class VideogamesController : ControllerBase
         }
     }
 
-    [HttpPut("Name")]
+    [HttpPut]
 
     [Authorize(Roles = Roles.Admin)]
     public IActionResult UpdateVideogame(string videogameName, [FromBody] VideogameUpdateDTO videogameUpdate)
