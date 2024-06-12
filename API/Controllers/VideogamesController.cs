@@ -39,12 +39,12 @@ public class VideogamesController : ControllerBase
 
     [Authorize(Roles = Roles.Admin + "," + Roles.User)]
     [HttpGet("byName", Name = "GetVideogameByName")]
-    public IActionResult GetVideogame(string videogameName)
+    public IActionResult GetVideogameByName(string videogameName)
     {
         
         try
         {
-            var videogame = _videogameService.GetVideogame(videogameName);
+            var videogame = _videogameService.GetVideogameByName(videogameName);
             return Ok(videogame);
         }
         catch (KeyNotFoundException knfex)
@@ -59,49 +59,71 @@ public class VideogamesController : ControllerBase
         }
     }
 
-    [Authorize(Roles = Roles.Admin)]
-    [HttpDelete]
-    public IActionResult DeleteVideogame(string videogameName)
+    [Authorize(Roles = Roles.Admin + "," + Roles.User)]
+    [HttpGet("{videogameId}", Name = "GetVideogameById") ]
+    public IActionResult GetVideogameById(int videogameId)
     {
         
         try
         {
-            _videogameService.DeleteVideogame(videogameName);
-            return NoContent();
+            var videogame = _videogameService.GetVideogameById(videogameId);
+            return Ok(videogame);
         }
         catch (KeyNotFoundException knfex)
         {
-            _logger.LogWarning($"No se ha encontrado el videojuego con nombre: {videogameName}. {knfex.Message}");
-            return NotFound($"No se ha encontrado el videojuego con nombre: {videogameName}. {knfex.Message}");
+            _logger.LogWarning($"No se ha encontrado el videojuego con id: {videogameId}. {knfex.Message}");
+           return NotFound($"No se ha encontrado el videojuego con id: {videogameId}. {knfex.Message}");
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Error al eliminar el videojuego con nombre: {videogameName}. {ex.Message}");
-            return BadRequest($"Error al eliminar el videojuego con nombre: {videogameName}. {ex.Message}");
+            _logger.LogError($"Error al obtener el videojuego con id: {videogameId}. {ex.Message}");
+            return BadRequest($"Error al obtener el videojuego con id: {videogameId}. {ex.Message}");
         }
     }
 
-    [HttpPut]
+    [Authorize(Roles = Roles.Admin)]
+    [HttpDelete("{videogameId}")]
+    public IActionResult DeleteVideogame(int videogameId)
+    {
+        
+        try
+        {
+            _videogameService.DeleteVideogame(videogameId);
+            return Ok($"El videojuego con id {videogameId} ha sido eliminado correctamente");
+        }
+        catch (KeyNotFoundException knfex)
+        {
+            _logger.LogWarning($"No se ha encontrado el videojuego con id: {videogameId}. {knfex.Message}");
+            return NotFound($"No se ha encontrado el videojuego con id: {videogameId}. {knfex.Message}");
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Error al eliminar el videojuego con id: {videogameId}. {ex.Message}");
+            return BadRequest($"Error al eliminar el videojuego con id: {videogameId}. {ex.Message}");
+        }
+    }
+
+    [HttpPut("{videogameId}")]
 
     [Authorize(Roles = Roles.Admin)]
-    public IActionResult UpdateVideogame(string videogameName, [FromBody] VideogameUpdateDTO videogameUpdate)
+    public IActionResult UpdateVideogame(int videogameId, [FromBody] VideogameUpdateDTO videogameUpdate)
     {
         if (!ModelState.IsValid)  {return BadRequest(ModelState); } 
 
         try
         {
-            _videogameService.UpdateVideogame(videogameName, videogameUpdate);
-            return Ok($"El usuario con nombre: {videogameName} ha sido actualizado correctamente");
+            _videogameService.UpdateVideogame(videogameId, videogameUpdate);
+            return Ok($"El videojuego con id: {videogameId} ha sido actualizado correctamente");
         }
          catch (KeyNotFoundException knfex)
         {
-            _logger.LogWarning($"No se ha encontrado el videojuego con nombre: {videogameName}. {knfex.Message}");
-            return NotFound($"No se ha encontrado el videojuego con nombre: {videogameName}. {knfex.Message}");
+            _logger.LogWarning($"No se ha encontrado el videojuego con id: {videogameId}. {knfex.Message}");
+            return NotFound($"No se ha encontrado el videojuego con id: {videogameId}. {knfex.Message}");
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Error al actualizar el videojuego con nombre: {videogameName}. {ex.Message}");
-            return BadRequest($"Error al actualizar el videojuego con nombre: {videogameName}. {ex.Message}");
+            _logger.LogError($"Error al actualizar el videojuego con id: {videogameId}. {ex.Message}");
+            return BadRequest($"Error al actualizar el videojuego con id: {videogameId}. {ex.Message}");
         }
     }
 
@@ -117,10 +139,10 @@ public class VideogamesController : ControllerBase
                 return BadRequest(ModelState);
             }
 
-            var videogameExist = _videogameService.GetVideogame(videogameCreate.Name);
+            var videogameExist = _videogameService.GetVideogameByName(videogameCreate.Name);
             if (videogameExist != null)
             {
-                return BadRequest("El usuario ya está registrado.");
+                return BadRequest("El videojuego ya está registrado.");
             }
 
             var videogame = _videogameService.RegisterVideogame(videogameCreate);
@@ -129,8 +151,8 @@ public class VideogamesController : ControllerBase
         }     
           catch (Exception ex)
         {
-            _logger.LogError($"Error al registrar el usuario. {ex.Message}");
-            return BadRequest($"Error al registrar el usuario. {ex.Message}");
+            _logger.LogError($"Error al registrar el videojuego. {ex.Message}");
+            return BadRequest($"Error al registrar el videojuego. {ex.Message}");
         }
         
 }

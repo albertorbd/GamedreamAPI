@@ -72,7 +72,7 @@ namespace GamedreamAPI.Data
         }
 
         public void DeleteVideogame(Videogame videogameToDelete) {
-            var videogame = GetVideogameByName(videogameToDelete.Name);
+            var videogame = GetVideogameById(videogameToDelete.Id);
             _context.Videogames.Remove(videogame);
             SaveChanges();
         }

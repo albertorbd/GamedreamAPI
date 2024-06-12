@@ -122,7 +122,7 @@ public class UsersController : ControllerBase
         try
         {
             _userService.DeleteUser(userId);
-            return Ok($"El usuerio con id {userId} ha sido eliminado ");
+            return Ok($"El usuario con id {userId} ha sido eliminado ");
         }
         catch (KeyNotFoundException knfex)
         {

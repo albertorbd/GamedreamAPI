@@ -36,9 +36,9 @@ public  IEnumerable<Videogame> GetAllVideogames(VideogameQueryParameters videoga
 }
 
     
-    public Videogame GetVideogame(string name){
+    public Videogame GetVideogameByName(string videogameName){
         try{
-            return _repository.GetVideogameByName(name);
+            return _repository.GetVideogameByName(videogameName);
         }
         catch(Exception e){
             
@@ -46,10 +46,20 @@ public  IEnumerable<Videogame> GetAllVideogames(VideogameQueryParameters videoga
         }
     }
 
-    public void DeleteVideogame(string gamename){
+    public Videogame GetVideogameById(int videogameId){
+        try{
+            return _repository.GetVideogameById(videogameId);
+        }
+        catch(Exception e){
+            
+            throw new Exception("An error has ocurred getting the videogame", e);
+        }
+    }
+
+    public void DeleteVideogame(int videogameId){
          
         try{
-           Videogame getVideogame = GetVideogame(gamename);
+           Videogame getVideogame = GetVideogameById(videogameId);
 
            if (getVideogame != null){
            _repository.DeleteVideogame(getVideogame);
@@ -64,10 +74,10 @@ public  IEnumerable<Videogame> GetAllVideogames(VideogameQueryParameters videoga
         }
     }
 
-    public void UpdateVideogame(string videogameName,  VideogameUpdateDTO videogameUpdateDTO){
-        var videogame = _repository.GetVideogameByName(videogameName);
+    public void UpdateVideogame(int videogameId,  VideogameUpdateDTO videogameUpdateDTO){
+        var videogame = _repository.GetVideogameById(videogameId);
        if (videogame==null){
-         throw new KeyNotFoundException($"Videojuego con nombre {videogameName} no encontrado");
+         throw new KeyNotFoundException($"Videojuego con id {videogameId} no encontrado");
        }
 
        videogame.Name= videogameUpdateDTO.Name;
