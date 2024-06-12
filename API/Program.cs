@@ -42,7 +42,7 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IOperationService, OperationService>();
 builder.Services.AddScoped<IOperationRepository, OperationEFRepository>();
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("ServerDB_dockernet");
+var connectionString = builder.Configuration.GetConnectionString("ServerDB_azure");
 
 builder.Services.AddDbContext<GamedreamContext>(options =>
     options.UseSqlServer(connectionString));
@@ -90,13 +90,15 @@ builder.Services.AddSwaggerGen(c =>
 
 
 var app = builder.Build();
-
+if (connectionString == "ServerDB_azure")
+{
 //Migraciones automáticas
 using (var scope = app.Services.CreateScope())
 {
   var services = scope.ServiceProvider;
   var context = services.GetRequiredService<GamedreamContext>();
   context.Database.Migrate();
+}
 }
 
     app.UseSwagger();
