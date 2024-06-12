@@ -19,11 +19,17 @@ jobs:
           dotnet-version: '6.0.x'
           include-prerelease: true
 
+      - name: Install EF Core tools
+        run: dotnet tool install --global dotnet-ef
+
+      - name: Add EF Core tools to PATH
+        run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
+
       - name: Build with dotnet
-        run: dotnet build --configuration Release GamedreamAPI.sln
+        run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp GamedreamAPI.sln
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -60,6 +66,12 @@ jobs:
           app-name: 'GamedreamAPIpro'
           slot-name: 'Production'
           package: .
+
+      - name: Install EF Core tools
+        run: dotnet tool install --global dotnet-ef
+
+      - name: Add EF Core tools to PATH
+        run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
 
       - name: Apply database migrations
         run: dotnet ef database update --context GamedreamContext --connection "Server=tcp:gamedreamsql.database.windows.net,1433;Database=gamedreamAPI;Uid=albertorbd;Pwd=saltamontes@02-10-1996;TrustServerCertificate=True;"
