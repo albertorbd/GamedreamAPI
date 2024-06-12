@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GamedreamAPI.Data.Migrations
 {
     [DbContext(typeof(GamedreamContext))]
-    [Migration("20240610170452_InitialCreate")]
+    [Migration("20240612191430_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
