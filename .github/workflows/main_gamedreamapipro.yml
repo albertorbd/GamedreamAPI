@@ -1,3 +1,6 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
 name: Build and deploy ASP.Net Core app to Azure Web App - GamedreamAPIpro
 
 on:
@@ -19,17 +22,11 @@ jobs:
           dotnet-version: '6.0.x'
           include-prerelease: true
 
-      - name: Install EF Core tools
-        run: dotnet tool install --global dotnet-ef --version 6.0.10
-
-      - name: Add EF Core tools to PATH
-        run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
-
       - name: Build with dotnet
-        run: dotnet build --configuration Release
+        run: dotnet build --configuration Release GamedreamAPI.sln
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp GamedreamAPI.sln
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -44,14 +41,14 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write # This is required for requesting the JWT
+      id-token: write #This is required for requesting the JWT
 
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
           name: .net-app
-      
+
       - name: Login to Azure
         uses: azure/login@v1
         with:
@@ -66,12 +63,3 @@ jobs:
           app-name: 'GamedreamAPIpro'
           slot-name: 'Production'
           package: .
-
-      - name: Install EF Core tools
-        run: dotnet tool install --global dotnet-ef --version 6.0.10
-
-      - name: Add EF Core tools to PATH
-        run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
-
-      - name: Apply database migrations
-        run: dotnet ef database update --context GamedreamContext --connection "Server=tcp:gamedreamsql.database.windows.net,1433;Database=gamedreamAPI;Uid=albertorbd;Pwd=saltamontes@02-10-1996;TrustServerCertificate=True;"
