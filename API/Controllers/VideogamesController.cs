@@ -31,8 +31,8 @@ public class VideogamesController : ControllerBase
         }     
         catch (Exception ex)
         {
-            _logger.LogError($"Error al obtener todos los videojuegos. {ex.Message}");
-            return BadRequest($"Error al obtener todos los videojuegos. {ex.Message}");
+            _logger.LogError($"An error has ocurred trying to get the videogames. {ex.Message}");
+            return BadRequest($"An error has ocurred trying to get the videogames. {ex.Message}");
         }
     }
 
@@ -49,13 +49,13 @@ public class VideogamesController : ControllerBase
         }
         catch (KeyNotFoundException knfex)
         {
-            _logger.LogWarning($"No se ha encontrado el videojuego con nombre: {videogameName}. {knfex.Message}");
-           return NotFound($"No se ha encontrado el videojuego con nombre: {videogameName}. {knfex.Message}");
+            _logger.LogWarning($"Couldnt find the videogame with name: {videogameName}. {knfex.Message}");
+           return NotFound($"Couldnt find the videogame with name: {videogameName}. {knfex.Message}");
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Error al obtener el videojuego con nombre: {videogameName}. {ex.Message}");
-            return BadRequest($"Error al obtener el videojuego con nombre: {videogameName}. {ex.Message}");
+            _logger.LogError($"An error has ocurred trying to get the videogame with name: {videogameName}. {ex.Message}");
+            return BadRequest($"An error has ocurred trying to get the videogame with name: {videogameName}. {ex.Message}");
         }
     }
 
@@ -71,13 +71,13 @@ public class VideogamesController : ControllerBase
         }
         catch (KeyNotFoundException knfex)
         {
-            _logger.LogWarning($"No se ha encontrado el videojuego con id: {videogameId}. {knfex.Message}");
-           return NotFound($"No se ha encontrado el videojuego con id: {videogameId}. {knfex.Message}");
+            _logger.LogWarning($"An error has ocurred trying to get the videogame with id: {videogameId}. {knfex.Message}");
+           return NotFound($"An error has ocurred trying to get the videogame with id: {videogameId}. {knfex.Message}");
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Error al obtener el videojuego con id: {videogameId}. {ex.Message}");
-            return BadRequest($"Error al obtener el videojuego con id: {videogameId}. {ex.Message}");
+            _logger.LogError($"An error has ocurred trying to get the videogame with id: {videogameId}. {ex.Message}");
+            return BadRequest($"An error has ocurred trying to get the videogame with id: {videogameId}. {ex.Message}");
         }
     }
 
@@ -93,13 +93,13 @@ public class VideogamesController : ControllerBase
         }
         catch (KeyNotFoundException knfex)
         {
-            _logger.LogWarning($"No se ha encontrado el videojuego con id: {videogameId}. {knfex.Message}");
-            return NotFound($"No se ha encontrado el videojuego con id: {videogameId}. {knfex.Message}");
+            _logger.LogWarning($"Couldnt find the videogame with id: {videogameId}. {knfex.Message}");
+            return NotFound($"Couldnt find the videogame with id: {videogameId}. {knfex.Message}");
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Error al eliminar el videojuego con id: {videogameId}. {ex.Message}");
-            return BadRequest($"Error al eliminar el videojuego con id: {videogameId}. {ex.Message}");
+            _logger.LogError($"An error has ocurred trying to delete videogame with id: {videogameId}. {ex.Message}");
+            return BadRequest($"An error has ocurred trying to delete videogame with id: {videogameId}. {ex.Message}");
         }
     }
 
@@ -117,13 +117,13 @@ public class VideogamesController : ControllerBase
         }
          catch (KeyNotFoundException knfex)
         {
-            _logger.LogWarning($"No se ha encontrado el videojuego con id: {videogameId}. {knfex.Message}");
-            return NotFound($"No se ha encontrado el videojuego con id: {videogameId}. {knfex.Message}");
+            _logger.LogWarning($"Couldnt find videogame with id: {videogameId}. {knfex.Message}");
+            return NotFound($"Couldnt find videogame with id: {videogameId}. {knfex.Message}");
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Error al actualizar el videojuego con id: {videogameId}. {ex.Message}");
-            return BadRequest($"Error al actualizar el videojuego con id: {videogameId}. {ex.Message}");
+            _logger.LogError($"Error trying to update videogame with id: {videogameId}. {ex.Message}");
+            return BadRequest($"Error trying to update videogame with id: {videogameId}. {ex.Message}");
         }
     }
 
@@ -151,8 +151,8 @@ public class VideogamesController : ControllerBase
         }     
           catch (Exception ex)
         {
-            _logger.LogError($"Error al registrar el videojuego. {ex.Message}");
-            return BadRequest($"Error al registrar el videojuego. {ex.Message}");
+            _logger.LogError($"An error has ocurred trying to register the videogame. {ex.Message}");
+            return BadRequest($"An error has ocurred trying to register the videogame. {ex.Message}");
         }
         
 }

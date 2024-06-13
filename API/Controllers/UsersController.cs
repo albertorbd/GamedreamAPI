@@ -34,8 +34,8 @@ public class UsersController : ControllerBase
         }     
         catch (Exception ex)
         {
-            _logger.LogError($"Error al obtener todos los usuarios. {ex.Message}");
-            return BadRequest($"Error al obtener todos los usuarios. {ex.Message}");
+            _logger.LogError($"An error has ocurred trying to get the users. {ex.Message}");
+            return BadRequest($"An error has ocurred trying to get the users. {ex.Message}");
         }
     }
 
@@ -51,13 +51,13 @@ public class UsersController : ControllerBase
         }
         catch (KeyNotFoundException knfex)
         {
-            _logger.LogWarning($"No se ha encontrado el usuario con email: {email}. {knfex.Message}");
-           return NotFound($"No se ha encontrado el usuario con email: {email}. {knfex.Message}");
+            _logger.LogWarning($"Couldnt find the user with email: {email}. {knfex.Message}");
+           return NotFound($"Couldnt find the user with email: {email}. {knfex.Message}");
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Error al obtener el usuario con email: {email}. {ex.Message}");
-            return BadRequest($"Error al obtener el usuario con email: {email}. {ex.Message}");
+            _logger.LogError($"An error has ocurred trying to get the user with email: {email}. {ex.Message}");
+            return BadRequest($"An error has ocurred trying to get the user with email: {email}. {ex.Message}");
         }
     }
 
@@ -75,13 +75,13 @@ public class UsersController : ControllerBase
         }
         catch (KeyNotFoundException knfex)
         {
-            _logger.LogWarning($"No se ha encontrado el usuario con id: {userId}. {knfex.Message}");
-           return NotFound($"No se ha encontrado el usuario con id: {userId}. {knfex.Message}");
+            _logger.LogWarning($"Couldnt find the user with id: {userId}. {knfex.Message}");
+            return NotFound($"Couldnt find the user with id: {userId}. {knfex.Message}");
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Error al obtener el usuario con id: {userId}. {ex.Message}");
-            return BadRequest($"Error al obtener el usuario con id: {userId}. {ex.Message}");
+            _logger.LogError($"An error has ocurred trying to get the user with id: {userId}. {ex.Message}");
+            return BadRequest($"An error has ocurred trying to get the user with id: {userId}. {ex.Message}");
         }
     }
 
@@ -102,13 +102,13 @@ public class UsersController : ControllerBase
         }
          catch (KeyNotFoundException knfex)
         {
-            _logger.LogWarning($"No se ha encontrado el usuario con id: {userId}. {knfex.Message}");
-            return NotFound($"No se ha encontrado el usuario con id: {userId}. {knfex.Message}");
+            _logger.LogWarning($"Couldnt find the user with id: {userId}. {knfex.Message}");
+            return NotFound($"Couldnt find the user with id: {userId}. {knfex.Message}");
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Error al actualizar el usuario con id: {userId}. {ex.Message}");
-            return BadRequest($"Error al actualizar el usuario con id: {userId}. {ex.Message}");
+            _logger.LogError($"An error has ocurred trying to update user with id: {userId}. {ex.Message}");
+            return BadRequest($"An error has ocurred trying to update user with id: {userId}. {ex.Message}");
         }
     }
 
@@ -126,13 +126,13 @@ public class UsersController : ControllerBase
         }
         catch (KeyNotFoundException knfex)
         {
-            _logger.LogWarning($"No se ha encontrado el usuario con id: {userId}. {knfex.Message}");
-            return NotFound($"No se ha encontrado el usuario con id: {userId}. {knfex.Message}");
+            _logger.LogWarning($"Couldnt find the user with id:: {userId}. {knfex.Message}");
+            return NotFound($"Couldnt find the user with id:: {userId}. {knfex.Message}");
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Error al eliminar el usuario con id: {userId}. {ex.Message}");
-            return BadRequest($"Error al eliminar el usuario con id: {userId}. {ex.Message}");
+            _logger.LogError($"An error has ocurred trying to delete user with id: {userId}. {ex.Message}");
+            return BadRequest($"An error has ocurred trying to delete user with id: {userId}. {ex.Message}");
         }
     }
 
@@ -155,13 +155,13 @@ public class UsersController : ControllerBase
 
             var user = _userService.RegisterUser(userCreate);
 
-            // Retornar la acción exitosa junto con el nuevo usuario creado
+           
             return CreatedAtAction(nameof(GetAllUsers), new { userId = user.Id }, userCreate);
         }     
           catch (Exception ex)
         {
-            _logger.LogError($"Error al registrar el usuario. {ex.Message}");
-            return BadRequest($"Error al registrar el usuario. {ex.Message}");
+            _logger.LogError($"An error has ocurred trying to register the user. {ex.Message}");
+            return BadRequest($"An error has ocurred trying to register the user. {ex.Message}");
         }
         
     }
