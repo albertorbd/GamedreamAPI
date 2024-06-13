@@ -42,13 +42,13 @@ namespace GamedreamAPI.API.Controllers
         }
         catch (KeyNotFoundException knfex)
         {
-            _logger.LogWarning($"No se ha encontrado ningún usuario. {knfex.Message}");
-           return NotFound($"No se ha encontrado ningún usuario. {knfex.Message}");
+            _logger.LogWarning($"No user found. {knfex.Message}");
+           return NotFound($"No user found. {knfex.Message}");
         }
         catch (Exception ex)
         {
-            _logger.LogError($"No se ha encontrado ningún usuario. {ex.Message}");
-            return BadRequest($"No se ha encontrado ningún usuario. {ex.Message}");
+            _logger.LogError($"No user found. {ex.Message}");
+            return BadRequest($"No user found. {ex.Message}");
         }
 }
 

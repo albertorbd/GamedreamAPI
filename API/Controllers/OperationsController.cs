@@ -38,13 +38,13 @@ namespace GamedreamAPI.API.Controllers
         }     
         catch (KeyNotFoundException knfex)
         {
-            _logger.LogWarning($"No se ha encontrado el usuario con ID: {moneyTransferDTO.UserId}. {knfex.Message}");
-            return NotFound($"No se ha encontrado el usuario con ID: {moneyTransferDTO.UserId}. {knfex.Message}");
+            _logger.LogWarning($"Couldnt find the user with ID: {moneyTransferDTO.UserId}. {knfex.Message}");
+            return NotFound($"Couldnt find the user with ID: {moneyTransferDTO.UserId}. {knfex.Message}");
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Error al hacer el depósito del usuario con ID: {moneyTransferDTO.UserId}. {ex.Message}");
-            return BadRequest($"Error al hacer el depósito del usuario con ID: {moneyTransferDTO.UserId}. {ex.Message}");
+            _logger.LogError($"Error trying to make the deposit to the user with ID: {moneyTransferDTO.UserId}. {ex.Message}");
+            return BadRequest($"Error trying to make the deposit to the user with ID: {moneyTransferDTO.UserId}. {ex.Message}");
         }
     }
 
@@ -61,13 +61,13 @@ namespace GamedreamAPI.API.Controllers
         }     
         catch (KeyNotFoundException knfex)
         {
-            _logger.LogWarning($"No se ha encontrado el usuario con ID: {moneyTransferDTO.UserId}. {knfex.Message}");
-            return NotFound($"No se ha encontrado el usuario con ID: {moneyTransferDTO.UserId}. {knfex.Message}");
+            _logger.LogWarning($"Couldnt find the user with ID: {moneyTransferDTO.UserId}. {knfex.Message}");
+            return NotFound($"Couldnt find the user with ID: {moneyTransferDTO.UserId}. {knfex.Message}");
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Error al hacer el depósito del usuario con ID: {moneyTransferDTO.UserId}. {ex.Message}");
-            return BadRequest($"Error al hacer el depósito del usuario con ID: {moneyTransferDTO.UserId}. {ex.Message}");
+            _logger.LogError($"Error trying to make the withdraw to the user with ID: {moneyTransferDTO.UserId}. {ex.Message}");
+            return BadRequest($"Error trying to make the withdraw to the user with ID: {moneyTransferDTO.UserId}. {ex.Message}");
         }
     }
 
@@ -84,13 +84,13 @@ namespace GamedreamAPI.API.Controllers
         }     
         catch (KeyNotFoundException knfex)
         {
-            _logger.LogWarning($"No se ha encontrado el usuario con ID: {buyVideogameDTO.UserId}. {knfex.Message}");
-            return NotFound($"No se ha encontrado el usuario con ID: {buyVideogameDTO.UserId}. {knfex.Message}");
+            _logger.LogWarning($"Couldnt find the user with ID: {buyVideogameDTO.UserId}. {knfex.Message}");
+            return NotFound($"Couldnt find the user with ID: {buyVideogameDTO.UserId}. {knfex.Message}");
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Error al hacer la compra del usuario con ID: {buyVideogameDTO.UserId}. {ex.Message}");
-            return BadRequest($"Error al hacer la compra del usuario con ID: {buyVideogameDTO.UserId}. {ex.Message}");
+            _logger.LogError($"Error making the purchase of the user with ID: {buyVideogameDTO.UserId}. {ex.Message}");
+            return BadRequest($"Error making the purchase of the user with ID: {buyVideogameDTO.UserId}. {ex.Message}");
         }
     }
 
@@ -107,8 +107,8 @@ namespace GamedreamAPI.API.Controllers
         }     
         catch (Exception ex)
         {
-            _logger.LogError($"Error al obtener todas las operaciones. {ex.Message}");
-            return BadRequest($"Error al obtener todas las operaciones. {ex.Message}");
+            _logger.LogError($"Error getting all operations. {ex.Message}");
+            return BadRequest($"Error getting all operations. {ex.Message}");
         }
     }
 
@@ -127,8 +127,8 @@ namespace GamedreamAPI.API.Controllers
             }
             catch (Exception ex)
             {
-                // En caso de error, devuelve un mensaje de error
-                return StatusCode(500, $"Error al obtener los videojuegos comprados: {ex.Message}");
+                
+                return StatusCode(500, $"Error getting the videogames of the user: {ex.Message}");
             }
         }
     }
