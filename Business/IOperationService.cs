@@ -10,5 +10,5 @@ void BuyVideogame(BuyVideogameDTO buyVideogameDTO);
 
 public IEnumerable<Operation> GetAllOperations(int userId, OperationQueryParameters operationQueryParameters);
 
-public Dictionary<string, double> VideogamesPurchased(int userId); 
+public List<string> VideogamesPurchased(int userId); 
 }
