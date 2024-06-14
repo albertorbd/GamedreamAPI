@@ -77,7 +77,7 @@ public  IEnumerable<Videogame> GetAllVideogames(VideogameQueryParameters videoga
     public void UpdateVideogame(int videogameId,  VideogameUpdateDTO videogameUpdateDTO){
         var videogame = _repository.GetVideogameById(videogameId);
        if (videogame==null){
-         throw new KeyNotFoundException($"Videojuego con id {videogameId} no encontrado");
+         throw new KeyNotFoundException($"Videogame with ID {videogameId} wasnt found");
        }
 
        videogame.Name= videogameUpdateDTO.Name;
@@ -108,7 +108,7 @@ public  IEnumerable<Videogame> GetAllVideogames(VideogameQueryParameters videoga
         }
         catch (Exception e)
         {
-            throw new Exception("Ha ocurrido un error al comprobar el campo", e);
+            throw new Exception("An error occurred while checking the field", e);
         }
     }
 

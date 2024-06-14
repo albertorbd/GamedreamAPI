@@ -96,7 +96,7 @@ public void DeleteUser(int userId){
     
        var user = _repository.GetUserById(userId);
        if (user==null){
-         throw new KeyNotFoundException($"Usuario con Id {userId} no encontrado");
+         throw new KeyNotFoundException($"User with ID {userId} wasnt found");
        }
 
        user.Email= userUpdateDTO.Email;
@@ -129,7 +129,7 @@ public User loginCheck(string email, string password)
 {
     if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
     {
-        throw new ArgumentException("El email y la contraseña son obligatorios.");
+        throw new ArgumentException("Email and password are obligatory.");
     }
 
     foreach (var userToLog in _repository.GetAllUsers())

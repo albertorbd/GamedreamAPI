@@ -24,7 +24,7 @@ public void MakeDeposit(MoneyTransferDTO moneyTransferDTO)
         var user = _userRepository.GetUserById(moneyTransferDTO.UserId);
         if (user == null)
         {
-            throw new KeyNotFoundException($"Usuario con ID {moneyTransferDTO.UserId} no encontrado");
+            throw new KeyNotFoundException($"User with ID {moneyTransferDTO.UserId} wasnt found");
         }
 
         Operation operation = new("Ingresar dinero", moneyTransferDTO.Amount, moneyTransferDTO.Method, moneyTransferDTO.UserId);
@@ -38,12 +38,12 @@ public void MakeDeposit(MoneyTransferDTO moneyTransferDTO)
         var user = _userRepository.GetUserById(moneyTransferDTO.UserId);
         if (user == null)
         {
-            throw new KeyNotFoundException($"Usuario con ID {moneyTransferDTO.UserId} no encontrado");
+            throw new KeyNotFoundException($"User with ID {moneyTransferDTO.UserId} wasnt found");
         }
 
          if (user.Money < moneyTransferDTO.Amount)
     {
-        throw new InvalidOperationException("Fondos insuficientes para realizar esta operación");
+        throw new InvalidOperationException("Insufficient founds to make this operation");
     }
 
         Operation operation = new("Retirar dinero", moneyTransferDTO.Amount, moneyTransferDTO.Method, moneyTransferDTO.UserId);
@@ -58,12 +58,17 @@ public void MakeDeposit(MoneyTransferDTO moneyTransferDTO)
     var user = _userRepository.GetUserById(buyVideogameDTO.UserId);
     var videogame = _videogameRepository.GetVideogameById(buyVideogameDTO.VideogameId);
     if (user == null) 
-        throw new KeyNotFoundException($"Usuario con ID {buyVideogameDTO.UserId} no encontrado");
+        throw new KeyNotFoundException($"User witn ID {buyVideogameDTO.UserId} wasnt found");
     if (videogame == null) 
-        throw new KeyNotFoundException($"Videojuego con ID {buyVideogameDTO.VideogameId} no encontrado");
-        
+        throw new KeyNotFoundException($"Videogame with ID {buyVideogameDTO.VideogameId} wasnt found");
+    
+    var userOperations = _operationrepository.GetAllOperations(buyVideogameDTO.UserId, new OperationQueryParameters());
+    if (userOperations.Any(op => op.VideogameId == buyVideogameDTO.VideogameId))
+        throw new Exception("You already have that videogame");
+    
+    
     if (user.Money < videogame.Price)
-        throw new Exception("No tienes suficiente saldo para realizar la compra");
+        throw new Exception("You do not have enough balance to make the purchase");
 
     double price = videogame.Price ?? 0.0;
 
@@ -81,11 +86,11 @@ public IEnumerable<Operation> GetAllOperations(int userId, OperationQueryParamet
     }
 
 
-  public Dictionary<string, double> VideogamesPurchased(int userId)
+ public List<string> VideogamesPurchased(int userId)
 {
     var userOperations = _operationrepository.GetAllOperations(userId, new OperationQueryParameters());
 
-    var totalQuantityByVideogame = new Dictionary<string, double>();
+    var videogamesPurchased = new List<string>();
 
     foreach (var operation in userOperations)
     {
@@ -94,15 +99,13 @@ public IEnumerable<Operation> GetAllOperations(int userId, OperationQueryParamet
             var videogame = _videogameRepository.GetVideogameById(operation.VideogameId.Value);
             var videogameName = videogame.Name;
 
-            if (!totalQuantityByVideogame.TryGetValue(videogameName, out var currentQuantity))
+            if (!videogamesPurchased.Contains(videogameName))
             {
-                currentQuantity = 0;
+                videogamesPurchased.Add(videogameName);
             }
-
-            totalQuantityByVideogame[videogameName] = currentQuantity + operation.Quantity;
         }
     }
 
-    return totalQuantityByVideogame;
+    return videogamesPurchased;
 }
 }
